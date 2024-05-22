@@ -1,3 +1,4 @@
+import 'package:cue_swap/services/local_storage.dart';
 import 'package:flutter/material.dart';
 
 enum AuthStatus {
@@ -32,7 +33,7 @@ class AuthProvider extends ChangeNotifier {
 
   Future<bool> isAuthenticated() async{
     //todo get token of localstorage final token = LocalStorage.prefs.getString('token');
-    String token="";
+    final token = LocalStorage.prefs.getString('token');
     if(token == null){
       authStatus = AuthStatus.notAuthenticated;
       notifyListeners();

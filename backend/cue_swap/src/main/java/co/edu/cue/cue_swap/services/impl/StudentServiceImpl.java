@@ -2,11 +2,14 @@ package co.edu.cue.cue_swap.services.impl;
 
 import co.edu.cue.cue_swap.domain.entities.Leader;
 import co.edu.cue.cue_swap.domain.entities.Student;
+import co.edu.cue.cue_swap.domain.entities.Token;
 import co.edu.cue.cue_swap.domain.entities.UserModel;
 import co.edu.cue.cue_swap.domain.enums.CodeMessage;
 import co.edu.cue.cue_swap.infrastructure.exception.StudentException;
 import co.edu.cue.cue_swap.infrastructure.exception.UserException;
 import co.edu.cue.cue_swap.infrastructure.repository.StudentRepository;
+import co.edu.cue.cue_swap.infrastructure.repository.TokenRepository;
+import co.edu.cue.cue_swap.infrastructure.utils.TokenGenerator;
 import co.edu.cue.cue_swap.infrastructure.utils.Validation;
 import co.edu.cue.cue_swap.mapping.dtos.*;
 import co.edu.cue.cue_swap.mapping.mappers.StudentMapper;
@@ -25,7 +28,7 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
-
+    private final TokenRepository tokenRepository;
     private final StudentMapper mapper;
     private final JwtService jwtService;
 
@@ -81,8 +84,17 @@ public class StudentServiceImpl implements StudentService {
         StudentDTO studentDTO=mapper.mapFromEntity(dataModification);
         Student newStudent = studentRepository.save(mapper.mapFromDTO(studentDTO));
         if (!Validation.isNull(newStudent)){
-            String token = jwtService.generateToken(newStudent);
-            studentAuthDTO.setAuthenticationResponseDTO(new AuthenticationResponseDTO(token));
+            String jwt = jwtService.generateToken(newStudent);
+            Token token = TokenGenerator.generateToken(jwt, newStudent);
+            List<Token> validTokens = tokenRepository.findByUserAndIsLogOut(newStudent, false);
+            if (!validTokens.isEmpty()) {
+                validTokens.forEach(t -> {
+                    t.setIsLogOut(true);
+                });
+            }
+            tokenRepository.saveAll(validTokens);
+            tokenRepository.save(token);
+            studentAuthDTO.setAuthenticationResponseDTO(new AuthenticationResponseDTO(jwt));
             studentAuthDTO.setStudentDTO(mapper.mapFromEntity(newStudent));
             studentAuthDTO.setStatusDTO(new StatusDTO(CodeMessage.SUCCESSFUL.getCode(),CodeMessage.SUCCESSFUL.getMessage()));
             return studentAuthDTO;

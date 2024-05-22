@@ -8,8 +8,10 @@ class LoginFormProvider extends ChangeNotifier{
 
   String email = '';
   String password = '';
+
   bool get isValid => (Validator.emptyValidator(email) && Validator.emailValidator(email)) && 
                       (Validator.emptyValidator(password) && Validator.passwordValidator(password));
+
 
   void updateButtonState() {
     notifyListeners(); 

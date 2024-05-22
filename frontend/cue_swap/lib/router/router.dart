@@ -9,9 +9,9 @@ class Flurorouter {
 
   static void configureRoutes(){
     // Auth Handler
-    router.define(rootRoute, handler: AuthHandlers.login,transitionType: TransitionType.none);
+    router.define(rootRoute, handler: AuthHandlers.signUp,transitionType: TransitionType.none);
     router.define(loginRoute, handler: AuthHandlers.login,transitionType: TransitionType.none);
-
+    router.define(signUpRoute, handler: AuthHandlers.signUp, transitionType: TransitionType.none);
   }
 
 }

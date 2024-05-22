@@ -1,8 +1,10 @@
 package co.edu.cue.cue_swap.security;
 
 import co.edu.cue.cue_swap.domain.entities.UserModel;
+import co.edu.cue.cue_swap.infrastructure.repository.TokenRepository;
 import co.edu.cue.cue_swap.infrastructure.utils.Constants;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Claims;
@@ -17,6 +19,9 @@ import java.util.function.Function;
 @Service
 @AllArgsConstructor
 public class JwtService {
+    @Autowired
+    private TokenRepository tokenRepository;
+
     private final String SECRET_KEY="500b41f952052e459ec3aa2ddb50c764572c04dcf10d760c5fc7dcae69f19b61";
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

@@ -1,12 +1,15 @@
 package co.edu.cue.cue_swap.services.impl;
 
 import co.edu.cue.cue_swap.domain.entities.Leader;
+import co.edu.cue.cue_swap.domain.entities.Token;
 import co.edu.cue.cue_swap.domain.entities.UserModel;
 import co.edu.cue.cue_swap.domain.enums.CodeMessage;
 import co.edu.cue.cue_swap.infrastructure.exception.LeaderException;
 import co.edu.cue.cue_swap.infrastructure.exception.UserException;
 import co.edu.cue.cue_swap.infrastructure.repository.LeaderRepository;
+import co.edu.cue.cue_swap.infrastructure.repository.TokenRepository;
 import co.edu.cue.cue_swap.infrastructure.utils.PasswordUtil;
+import co.edu.cue.cue_swap.infrastructure.utils.TokenGenerator;
 import co.edu.cue.cue_swap.infrastructure.utils.Validation;
 import co.edu.cue.cue_swap.mapping.dtos.*;
 import co.edu.cue.cue_swap.mapping.mappers.LeaderMapper;
@@ -22,7 +25,7 @@ import java.util.List;
 @AllArgsConstructor
 public class LeaderServiceImpl implements LeaderService {
     private final LeaderRepository leaderRepository;
-
+    private final TokenRepository tokenRepository;
     private final LeaderMapper mapper;
     private final JwtService jwtService;
 
@@ -76,8 +79,17 @@ public class LeaderServiceImpl implements LeaderService {
         LeaderDTO leaderDTO=mapper.mapFromEntity(dataModification);
         Leader newLeader = leaderRepository.save(mapper.mapFromDTO(leaderDTO));
         if (!Validation.isNull(newLeader)){
-            String token = jwtService.generateToken(newLeader);
-            leaderAuthDTO.setAuthenticationResponseDTO(new AuthenticationResponseDTO(token));
+            String jwt = jwtService.generateToken(newLeader);
+            Token token = TokenGenerator.generateToken(jwt,newLeader );
+            List<Token> validTokens = tokenRepository.findByUserAndIsLogOut(newLeader, false);
+            if (!validTokens.isEmpty()) {
+                validTokens.forEach(t -> {
+                    t.setIsLogOut(true);
+                });
+            }
+            tokenRepository.saveAll(validTokens);
+            tokenRepository.save(token);
+            leaderAuthDTO.setAuthenticationResponseDTO(new AuthenticationResponseDTO(jwt));
             leaderAuthDTO.setLeaderDTO(mapper.mapFromEntity(newLeader));
             leaderAuthDTO.setStatusDTO(new StatusDTO(CodeMessage.SUCCESSFUL.getCode(), CodeMessage.SUCCESSFUL.getMessage()));
             return leaderAuthDTO;

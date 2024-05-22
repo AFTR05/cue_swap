@@ -1,3 +1,4 @@
+import 'package:cue_swap/ui/layouts/auth/views/login_view.dart';
 import 'package:cue_swap/ui/layouts/auth/widgets/background_swap.dart';
 import 'package:cue_swap/ui/layouts/auth/widgets/custom_title.dart';
 import 'package:flutter/material.dart';
@@ -12,17 +13,17 @@ class AuthLayout extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final size = MediaQuery.of(context).size;
+    final ScrollController _scrollController = ScrollController(initialScrollOffset: 0);
 
     return Scaffold(
       body: Scrollbar(
-        // isAlwaysShown: true,
+        controller: _scrollController,
         child: ListView(
           physics: const ClampingScrollPhysics(),
-          children: [
-
+          children: <Widget>[
             ( size.width > 1000 )
-              ? _DesktopBody( child: Text("Sfsdfsf"))
-              : _MobileBody( child: Text("Sfsdfsf") )
+              ? const _DesktopBody( child: LoginView())
+              : const _MobileBody( child: LoginView() )
           ],
         ),
       )
@@ -61,9 +62,9 @@ class _DesktopBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox( height: 50 ),
+                const SizedBox( height: 100 ),
                 const CustomTitle(),
-                const SizedBox( height: 50 ),
+                const SizedBox( height: 60 ),
                 Expanded(child: child ),
               ],
             ),
@@ -83,12 +84,14 @@ class _MobileBody extends StatelessWidget {
     Key? key, 
     required this.child
   }) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
+      width: size.width,
       height: 1000,
-      color: Colors.black,
+      color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -101,7 +104,7 @@ class _MobileBody extends StatelessWidget {
           ),
           const SizedBox(
             width: double.infinity,
-            height: 400,
+            height: 417,
             child: BackgroundSwap(),
           )
         ],
