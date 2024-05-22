@@ -4,6 +4,7 @@ package co.edu.cue.cue_swap.infrastructure.utils;
 
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class PasswordUtil {
     /**
@@ -13,8 +14,7 @@ public class PasswordUtil {
      * @return Un String del hash de la password
      */
     public static String hashPassword(String password) {
-        Argon2 argon2= Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-        return argon2.hash(1,1024,1,password);
+        return BCrypt.hashpw(password, "salt");
     }
 
     /**
@@ -24,9 +24,8 @@ public class PasswordUtil {
      * @param hash hash que quiero comparar
      * @return Un Boolean que me dice si esta vacio o nulo
      */
-    public static Boolean compareHash(String password, String hash){
-        Argon2 argon2= Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-        return argon2.hash(1, 1024, 1, password).equals(hash);
+    public static boolean compareHash(String password, String hash) {
+        return BCrypt.checkpw(password, hash);
     }
 
 }

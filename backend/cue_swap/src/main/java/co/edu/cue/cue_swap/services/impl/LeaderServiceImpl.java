@@ -17,6 +17,7 @@ import co.edu.cue.cue_swap.security.JwtService;
 import co.edu.cue.cue_swap.services.LeaderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -28,6 +29,7 @@ public class LeaderServiceImpl implements LeaderService {
     private final TokenRepository tokenRepository;
     private final LeaderMapper mapper;
     private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
 
     /**
      * Devuelve una lista de todos los directivos con estado true.
@@ -72,7 +74,8 @@ public class LeaderServiceImpl implements LeaderService {
         Leader dataModification=mapper.mapFromRequestDTO(leader);
         if (leaderRepository.findAll().stream().anyMatch(stu -> stu.getNid().equals(leader.nid()))) throw new UserException("Usuario Repetido");
         if (leaderRepository.findAll().stream().anyMatch(stu -> stu.getAccount().getUsername().equals(leader.username()))) throw new UserException("Usuario Repetido");
-        dataModification.getAccount().setPassword(PasswordUtil.hashPassword(leader.password()));
+//        dataModification.getAccount().setPassword(PasswordUtil.hashPassword(leader.password()));
+        dataModification.getAccount().setPassword(passwordEncoder.encode(leader.password()));
         dataModification.setData_state(true);
         dataModification.setAvailable_points(0);
         LeaderAuthDTO leaderAuthDTO=new LeaderAuthDTO();
