@@ -24,6 +24,29 @@ class CustomInput {
     );
   }
 
+  static InputDecoration signUpInputDecoration({
+    required String hint,
+    required String label,
+    required IconData icon,
+  }){
+    return InputDecoration(
+      border: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.black)
+      ),
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Color.fromRGBO(76, 76, 82, 1))
+      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      hintText: hint,
+      labelText: label,
+      prefixIcon: Icon( icon, color: Colors.black ),
+      labelStyle: CustomLabels.labelFormStyle,
+      hintStyle: CustomLabels.hintFormStyle
+
+    );
+  }
+  
+
   static InputDecoration searchInputDecoration({
     required String hint,
     required IconData icon

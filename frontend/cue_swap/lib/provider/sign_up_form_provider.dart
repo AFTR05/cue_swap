@@ -16,7 +16,7 @@ class LeaderData{
 
 class SignUpFormProvider extends ChangeNotifier{
 
-  GlobalKey<FormState> formkey = GlobalKey<FormState> ();
+  final GlobalKey<FormState> formkey = GlobalKey<FormState> ();
   
 
   String name = '';

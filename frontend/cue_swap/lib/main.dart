@@ -1,4 +1,5 @@
 import 'package:cue_swap/provider/auth_provider.dart';
+import 'package:cue_swap/provider/side_menu_provider.dart';
 import 'package:cue_swap/router/router.dart';
 import 'package:cue_swap/services/local_storage.dart';
 import 'package:cue_swap/services/navigation_service.dart';
@@ -23,8 +24,9 @@ class AppState extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(lazy: false, create: ( _ ) => AuthProvider()),
+        ChangeNotifierProvider(lazy: false,create: ( _ ) => SideMenuProvider())
       ],
-      child: MyApp(),
+      child: const MyApp(),
     );
   }
 }
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
       title: 'Swap',
       initialRoute: '/',
       onGenerateRoute: Flurorouter.router.generator,
-      navigatorKey: NavigationService.navigatorKey,      
+      navigatorKey: NavigationService.navigatorKey,
       scaffoldMessengerKey: NotificationsService.messengerKey,
       theme: ThemeData.light().copyWith(
         scrollbarTheme: const ScrollbarThemeData().copyWith(

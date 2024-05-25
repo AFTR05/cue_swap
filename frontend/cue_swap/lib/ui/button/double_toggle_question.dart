@@ -2,15 +2,14 @@ import 'package:cue_swap/ui/button/custom_toggle_buttom.dart';
 import 'package:cue_swap/ui/labels/custom_labels.dart';
 import 'package:flutter/material.dart';
 
-class SimpleToggleQuestion extends StatelessWidget {
-  const SimpleToggleQuestion({
+class DoubleToggleQuestion extends StatelessWidget {
+  const DoubleToggleQuestion({
     super.key, 
     required this.question, 
     required this.yesFunction, 
     required this.noFunction, 
-    required this.optionController, 
-    this.extendedAnswer, 
-    this.extendedQuestion = const Center(), required this.leftOption, required this.rightOption
+    required this.optionController,
+    this.leftExtendedQuestion = const Center(), required this.leftOption, required this.rightOption, required this.rightExtendedQuestion
     }
   );
 
@@ -20,8 +19,8 @@ class SimpleToggleQuestion extends StatelessWidget {
   final String leftOption;
   final String rightOption;
   final bool? optionController;
-  final bool? extendedAnswer;
-  final Widget extendedQuestion;
+  final Widget leftExtendedQuestion;
+  final Widget rightExtendedQuestion;
 
   @override
   Widget build(BuildContext context) {
@@ -77,9 +76,11 @@ class SimpleToggleQuestion extends StatelessWidget {
                   )
                 ],
               ),
-              optionController == extendedAnswer
-                                  ? extendedQuestion
-                                  : Container()
+              optionController != null 
+                ? optionController! 
+                        ? leftExtendedQuestion 
+                        : rightExtendedQuestion 
+                : Container()
             ],
           ),
         ),

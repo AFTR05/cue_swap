@@ -8,6 +8,14 @@ class CustomLabels{
                 color: const Color.fromRGBO(106, 133, 160, 1),
                 fontWeight: FontWeight.normal
               );
+
+  static TextStyle dashboardTitle= GoogleFonts.juliusSansOne(
+                fontSize: 50,
+                color: Colors.black,
+                fontWeight: FontWeight.bold
+              );
+
+
   static TextStyle hintFormStyle= GoogleFonts.inter(
     color: Colors.black, 
     fontSize: 16,
@@ -43,9 +51,20 @@ class CustomLabels{
     fontWeight: FontWeight.w400
   );
 
+  static TextStyle h1 = GoogleFonts.roboto(
+    fontSize: 30,
+    fontWeight: FontWeight.w400
+  );
+
   static TextStyle textSpanBasic= GoogleFonts.inter(
     fontSize: 15,
     color: Colors.black,
     fontWeight: FontWeight.w400
   );
+
+  static TextStyle noPageFound= GoogleFonts.montserratAlternates(
+    color: Colors.black,
+    fontSize: 50,
+    fontWeight: FontWeight.bold
+  ); 
 }

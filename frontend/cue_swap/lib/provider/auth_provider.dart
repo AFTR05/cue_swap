@@ -1,4 +1,6 @@
+import 'package:cue_swap/router/router.dart';
 import 'package:cue_swap/services/local_storage.dart';
+import 'package:cue_swap/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 enum AuthStatus {
@@ -25,6 +27,7 @@ class AuthProvider extends ChangeNotifier {
     // todo localstorage management LocalStorage.prefs.setString('token', _token!);
 
     authStatus = AuthStatus.authenticated;
+    NavigationService.replaceTo(Flurorouter.dashboardRoute);
     notifyListeners();
     
     //todo navigate with todo NavigationService.replaceTo(Flurorouter.dashboardRoute);
@@ -45,6 +48,12 @@ class AuthProvider extends ChangeNotifier {
     authStatus = AuthStatus.authenticated;
     notifyListeners();
     return true;
+  }
+
+  logout(){
+    LocalStorage.prefs.remove('token');
+    authStatus = AuthStatus.notAuthenticated;
+    notifyListeners();  
   }
   
 }

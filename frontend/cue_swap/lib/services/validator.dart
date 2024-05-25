@@ -38,6 +38,14 @@ class Validator {
     
   }
 
+  static bool numberBetween1And12Validator(String? value) {
+    if (value == null || value.isEmpty) {
+      return false;
+    }
+    final n = int.tryParse(value);
+    return n != null && n >= 1 && n <= 12;
+  }
+
   static bool letterValidator(String? value) {
     final count = value?.split(" ").length;
     return (alphabetic.hasMatch(value ?? '') && count! <=2 ) ? true : false;
