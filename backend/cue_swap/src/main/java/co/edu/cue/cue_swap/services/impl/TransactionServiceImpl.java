@@ -42,7 +42,7 @@ public class TransactionServiceImpl implements TransactionService {
                     try {
                         validatePublicationAvailableState(dataModification);
                         changePublicationState(dataModification);
-                        changeOfferState(dataModificationgi);
+                        changeOfferState(dataModification);
                         Transaction savedTransaction = transactionRepository.save(dataModification);
                         return mapper.mapFromEntity(savedTransaction);
                     } catch (Exception e) {
