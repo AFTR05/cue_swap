@@ -34,7 +34,7 @@ public class OfferController {
 
     @Operation(summary = "Mostrar las ofertas con estado verdadero con multiples filtros"
             , description = "Este método se utilizará para traer todas las publicaciones con estado verdadero con multiples filtros")
-    @PostMapping("/filter-offer/")
+    @PostMapping("/filter-offer")
     public ResponseEntity<Map<String, List<OfferDTO>>> filterOffers(@RequestBody@Valid SearchOfferDTO searchOfferDTO){
         List<OfferDTO> offerDTOS= service.filterOffers(searchOfferDTO);
         Map<String, List<OfferDTO>> response = ResponseMessageUtil.responseMessage("offers",offerDTOS);

@@ -21,6 +21,7 @@ public interface RewardMapper {
      * @param source Objeto Reward que contiene los detalles de la recompensa
      * @return Objeto RewardDTO que representa la recompensa en un DTO.
      */
+    @Mapping(target = "rewardId", source = "source.id")
     RewardDTO mapFromEntity(Reward source);
 
     /**

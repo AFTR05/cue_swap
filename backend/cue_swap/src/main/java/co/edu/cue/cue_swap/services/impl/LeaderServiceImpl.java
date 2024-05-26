@@ -2,7 +2,7 @@ package co.edu.cue.cue_swap.services.impl;
 
 import co.edu.cue.cue_swap.domain.entities.Leader;
 import co.edu.cue.cue_swap.domain.entities.Token;
-import co.edu.cue.cue_swap.domain.entities.UserModel;
+import co.edu.cue.cue_swap.domain.entities.User;
 import co.edu.cue.cue_swap.domain.enums.CodeMessage;
 import co.edu.cue.cue_swap.infrastructure.exception.LeaderException;
 import co.edu.cue.cue_swap.infrastructure.exception.UserException;
@@ -40,7 +40,7 @@ public class LeaderServiceImpl implements LeaderService {
     public List<LeaderDTO> getAllLeaders() {
         return leaderRepository.findAll()
                 .stream()
-                .filter(UserModel::getData_state)
+                .filter(User::getData_state)
                 .map(mapper::mapFromEntity).toList();
     }
 
@@ -74,7 +74,6 @@ public class LeaderServiceImpl implements LeaderService {
         Leader dataModification=mapper.mapFromRequestDTO(leader);
         if (leaderRepository.findAll().stream().anyMatch(stu -> stu.getNid().equals(leader.nid()))) throw new UserException("Usuario Repetido");
         if (leaderRepository.findAll().stream().anyMatch(stu -> stu.getAccount().getUsername().equals(leader.username()))) throw new UserException("Usuario Repetido");
-//        dataModification.getAccount().setPassword(PasswordUtil.hashPassword(leader.password()));
         dataModification.getAccount().setPassword(passwordEncoder.encode(leader.password()));
         dataModification.setData_state(true);
         dataModification.setAvailable_points(0);

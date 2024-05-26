@@ -21,6 +21,9 @@ public interface LeaderMapper {
      */
     @Mapping(target = "publications", source = "source.publications")
     @Mapping(target = "products", source = "source.products")
+    @Mapping(target = "rewards", source = "source.rewards")
+    @Mapping(target = "user_reports", source = "source.user_reports")
+    @Mapping(target = "made_reports", source = "source.made_reports")
     @InheritInverseConfiguration
     @Mapping(target = "username", source = "account.username")
     @Mapping(target = "password", source = "account.password")
@@ -34,6 +37,9 @@ public interface LeaderMapper {
      */
     @Mapping(target = "publications", source = "source.publications")
     @Mapping(target = "products", source = "source.products")
+    @Mapping(target = "rewards", source = "source.rewards")
+    @Mapping(target = "user_reports", source = "source.user_reports")
+    @Mapping(target = "made_reports", source = "source.made_reports")
     @Mapping(target = "account.username", source = "source.username")
     @Mapping(target = "account.password", source = "source.password")
     Leader mapFromDTO(LeaderDTO source);
@@ -47,6 +53,9 @@ public interface LeaderMapper {
      */
     @Mapping(target = "publications", source = "source.publications")
     @Mapping(target = "products", source = "source.products")
+    @Mapping(target = "rewards", source = "source.rewards")
+    @Mapping(target = "user_reports", source = "source.user_reports")
+    @Mapping(target = "made_reports", source = "source.made_reports")
     @Mapping(target = "account.username", source = "source.username")
     @Mapping(target = "account.password", source = "source.password")
     Leader mapFromRequestDTO(LeaderRequestDTO source);

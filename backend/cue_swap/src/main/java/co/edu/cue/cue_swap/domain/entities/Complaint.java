@@ -15,10 +15,10 @@ public class Complaint {
 
     @ManyToOne()
     @JoinColumn(name = "complainant_id")
-    private UserModel complainant;
+    private User complainant;
 
     @ManyToOne()
     @JoinColumn(name = "denounced_id")
-    private UserModel denounced;
+    private User denounced;
 
 }

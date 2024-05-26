@@ -1,9 +1,8 @@
 package co.edu.cue.cue_swap.services.impl;
 
-import co.edu.cue.cue_swap.domain.entities.Leader;
 import co.edu.cue.cue_swap.domain.entities.Student;
 import co.edu.cue.cue_swap.domain.entities.Token;
-import co.edu.cue.cue_swap.domain.entities.UserModel;
+import co.edu.cue.cue_swap.domain.entities.User;
 import co.edu.cue.cue_swap.domain.enums.CodeMessage;
 import co.edu.cue.cue_swap.infrastructure.exception.StudentException;
 import co.edu.cue.cue_swap.infrastructure.exception.UserException;
@@ -17,6 +16,7 @@ import co.edu.cue.cue_swap.security.JwtService;
 import co.edu.cue.cue_swap.services.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import co.edu.cue.cue_swap.infrastructure.utils.PasswordUtil;
 import org.springframework.web.server.ResponseStatusException;
@@ -31,6 +31,7 @@ public class StudentServiceImpl implements StudentService {
     private final TokenRepository tokenRepository;
     private final StudentMapper mapper;
     private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
 
     /**
      * Devuelve una lista de todos los estudiantes con estado true.
@@ -41,7 +42,7 @@ public class StudentServiceImpl implements StudentService {
     public List<StudentDTO> getAllStudents() {
         return studentRepository.findAll()
                 .stream()
-                .filter(UserModel::getData_state)
+                .filter(User::getData_state)
                 .map(mapper::mapFromEntity).toList();
     }
 
@@ -77,7 +78,7 @@ public class StudentServiceImpl implements StudentService {
         Student dataModification=mapper.mapFromRequestDTO(student);
         if (studentRepository.findAll().stream().anyMatch(stu -> stu.getNid().equals(student.nid()))) throw new UserException("Usuario Repetido");
         if (studentRepository.findAll().stream().anyMatch(stu -> stu.getAccount().getUsername().equals(student.username()))) throw new UserException("Usuario Repetido");
-        dataModification.getAccount().setPassword(PasswordUtil.hashPassword(student.password()));
+        dataModification.getAccount().setPassword(passwordEncoder.encode(student.password()));
         dataModification.setData_state(true);
         dataModification.setAvailable_points(0);
         StudentAuthDTO studentAuthDTO = new StudentAuthDTO();

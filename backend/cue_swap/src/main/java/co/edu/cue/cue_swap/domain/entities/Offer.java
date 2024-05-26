@@ -1,5 +1,7 @@
 package co.edu.cue.cue_swap.domain.entities;
 
+import co.edu.cue.cue_swap.domain.enums.OfferState;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,10 +20,13 @@ public class Offer {
     private Publication publication;
 
     @ManyToOne
+    @Nullable
     private Product exchanged_product;
 
     @ManyToOne
-    private UserModel bidder;
+    private User bidder;
+
+    private OfferState offerState;
 
     private Double monetary_value;
 

@@ -19,5 +19,5 @@ public class Token {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserModel user;
+    private User user;
 }

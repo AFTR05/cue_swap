@@ -18,7 +18,7 @@ public class Product {
 
     @ManyToOne()
     @JoinColumn(name = "user_id")
-    private UserModel user;
+    private User user;
 
     private String description;
 

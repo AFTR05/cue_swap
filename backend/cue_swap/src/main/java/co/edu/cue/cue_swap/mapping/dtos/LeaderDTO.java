@@ -1,8 +1,6 @@
 package co.edu.cue.cue_swap.mapping.dtos;
 
-import co.edu.cue.cue_swap.domain.entities.Account;
-import co.edu.cue.cue_swap.domain.entities.Product;
-import co.edu.cue.cue_swap.domain.entities.Publication;
+import co.edu.cue.cue_swap.domain.entities.*;
 import co.edu.cue.cue_swap.domain.enums.Career;
 import co.edu.cue.cue_swap.domain.enums.Dependence;
 import co.edu.cue.cue_swap.domain.enums.Role;
@@ -22,6 +20,9 @@ public record LeaderDTO (
         @JsonProperty("available_points") Integer available_points,
         @JsonProperty("role") Role role,
         @JsonProperty("dependence") String dependence,
+        @JsonProperty("user_reports") List<Complaint> user_reports,
+        @JsonProperty("made_reports") List<Complaint> made_reports,
+        @JsonProperty("rewards") List<Reward> rewards,
         Boolean data_state){
 
 }

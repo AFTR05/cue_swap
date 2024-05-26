@@ -1,8 +1,5 @@
 package co.edu.cue.cue_swap.mapping.dtos;
 
-import co.edu.cue.cue_swap.domain.entities.Product;
-import co.edu.cue.cue_swap.domain.entities.Publication;
-import co.edu.cue.cue_swap.domain.entities.UserModel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;

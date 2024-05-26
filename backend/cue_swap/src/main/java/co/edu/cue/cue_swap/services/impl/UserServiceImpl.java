@@ -1,11 +1,10 @@
 package co.edu.cue.cue_swap.services.impl;
 
 import co.edu.cue.cue_swap.domain.entities.Token;
-import co.edu.cue.cue_swap.domain.entities.UserModel;
+import co.edu.cue.cue_swap.domain.entities.User;
 import co.edu.cue.cue_swap.domain.enums.CodeMessage;
 import co.edu.cue.cue_swap.infrastructure.repository.TokenRepository;
 import co.edu.cue.cue_swap.infrastructure.repository.UserRepository;
-import co.edu.cue.cue_swap.infrastructure.utils.PasswordUtil;
 import co.edu.cue.cue_swap.infrastructure.utils.TokenGenerator;
 import co.edu.cue.cue_swap.infrastructure.utils.Validation;
 import co.edu.cue.cue_swap.mapping.dtos.StatusDTO;
@@ -36,11 +35,11 @@ public class UserServiceImpl implements UserService {
     public UserAuthDTO authenticate(UserModelDTO userModelDTO) {
         UserAuthDTO userAuthDTO = new UserAuthDTO();
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userModelDTO.username(),userModelDTO.password()));
-        UserModel userModel=userRepository.findByAccount_Username(userModelDTO.username());
-        if (!Validation.isNull(userModel)){
-            String jwt = jwtService.generateToken(userModel);
-            Token token = TokenGenerator.generateToken(jwt, userModel);
-            List<Token> validTokens = tokenRepository.findByUserAndIsLogOut(userModel, false);
+        User user =userRepository.findByAccount_Username(userModelDTO.username());
+        if (!Validation.isNull(user)){
+            String jwt = jwtService.generateToken(user);
+            Token token = TokenGenerator.generateToken(jwt, user);
+            List<Token> validTokens = tokenRepository.findByUserAndIsLogOut(user, false);
             if (!validTokens.isEmpty()) {
                 validTokens.forEach(t -> {
                     t.setIsLogOut(true);
@@ -49,7 +48,7 @@ public class UserServiceImpl implements UserService {
             tokenRepository.saveAll(validTokens);
             tokenRepository.save(token);
             userAuthDTO.setAuthenticationResponseDTO(new AuthenticationResponseDTO(jwt));
-            userAuthDTO.setUserModel(userModel);
+            userAuthDTO.setUser(user);
             userAuthDTO.setStatusDTO(new StatusDTO(CodeMessage.SUCCESSFUL.getCode(),CodeMessage.SUCCESSFUL.getMessage()));
             return userAuthDTO;
         }

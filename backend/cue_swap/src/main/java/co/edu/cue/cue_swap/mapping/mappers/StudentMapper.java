@@ -22,6 +22,9 @@ public interface StudentMapper {
      */
     @Mapping(target = "products", source = "source.products")
     @Mapping(target = "publications", source = "source.publications")
+    @Mapping(target = "rewards", source = "source.rewards")
+    @Mapping(target = "user_reports", source = "source.user_reports")
+    @Mapping(target = "made_reports", source = "source.made_reports")
     @InheritInverseConfiguration
     @Mapping(target = "username", source = "account.username")
     @Mapping(target = "password", source = "account.password")
@@ -35,6 +38,9 @@ public interface StudentMapper {
      */
     @Mapping(target = "products", source = "source.products")
     @Mapping(target = "publications", source = "source.publications")
+    @Mapping(target = "rewards", source = "source.rewards")
+    @Mapping(target = "user_reports", source = "source.user_reports")
+    @Mapping(target = "made_reports", source = "source.made_reports")
     @Mapping(target = "account.username", source = "source.username")
     @Mapping(target = "account.password", source = "source.password")
     Student mapFromDTO(StudentDTO source);
@@ -47,6 +53,9 @@ public interface StudentMapper {
      */
     @Mapping(target = "products", source = "source.products")
     @Mapping(target = "publications", source = "source.publications")
+    @Mapping(target = "rewards", source = "source.rewards")
+    @Mapping(target = "user_reports", source = "source.user_reports")
+    @Mapping(target = "made_reports", source = "source.made_reports")
     @Mapping(target = "account.username", source = "source.username")
     @Mapping(target = "account.password", source = "source.password")
     Student mapFromRequestDTO(StudentRequestDTO source);

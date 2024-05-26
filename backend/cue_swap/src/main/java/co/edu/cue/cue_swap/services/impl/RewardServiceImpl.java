@@ -1,18 +1,13 @@
 package co.edu.cue.cue_swap.services.impl;
 
-import co.edu.cue.cue_swap.domain.entities.Rating;
 import co.edu.cue.cue_swap.domain.entities.Reward;
-import co.edu.cue.cue_swap.domain.entities.UserModel;
-import co.edu.cue.cue_swap.infrastructure.exception.RatingException;
+import co.edu.cue.cue_swap.domain.entities.User;
 import co.edu.cue.cue_swap.infrastructure.exception.RewardException;
-import co.edu.cue.cue_swap.infrastructure.exception.TransactionException;
 import co.edu.cue.cue_swap.infrastructure.exception.UserException;
 import co.edu.cue.cue_swap.infrastructure.repository.RewardRepository;
-import co.edu.cue.cue_swap.infrastructure.repository.TransactionRepository;
 import co.edu.cue.cue_swap.infrastructure.repository.UserRepository;
 import co.edu.cue.cue_swap.infrastructure.utils.Validation;
 import co.edu.cue.cue_swap.mapping.dtos.*;
-import co.edu.cue.cue_swap.mapping.mappers.RatingMapper;
 import co.edu.cue.cue_swap.mapping.mappers.RewardMapper;
 import co.edu.cue.cue_swap.services.RewardService;
 import lombok.AllArgsConstructor;
@@ -48,7 +43,7 @@ public class RewardServiceImpl implements RewardService {
     @Override
     public RewardUserDTO redeemReward(RewardUserRequestDTO rewardUserRequestDTO) {
         RewardUserDTO rewardUserDTO=new RewardUserDTO();
-        UserModel user = userRepository.findById(rewardUserRequestDTO.user_id())
+        User user = userRepository.findById(rewardUserRequestDTO.user_id())
                 .orElseThrow(() -> new UserException("User not found"));
         Reward reward = rewardRepository.findById(rewardUserRequestDTO.reward_id())
                 .orElseThrow(() -> new RewardException("Reward not found"));
@@ -60,7 +55,7 @@ public class RewardServiceImpl implements RewardService {
             user.setRewards(rewards);
         }
         rewardUserDTO.setReward(mapper.mapFromEntity(reward));
-        rewardUserDTO.setUserModel(user);
+        rewardUserDTO.setUser(user);
         userRepository.save(user);
         return rewardUserDTO;
     }

@@ -1,5 +1,3 @@
-import 'package:cue_swap/ui/cards/white_card.dart';
-import 'package:cue_swap/ui/labels/custom_labels.dart';
 import 'package:flutter/material.dart';
 
 class InstitutionalBlogView extends StatelessWidget {
@@ -8,7 +6,7 @@ class InstitutionalBlogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -27,7 +25,7 @@ class InstitutionalBlogView extends StatelessWidget {
 class SectionTitle extends StatelessWidget {
   final String title;
 
-  SectionTitle({required this.title});
+  const SectionTitle({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +33,7 @@ class SectionTitle extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,
           color: Color.fromRGBO(106, 133, 160, 1),
@@ -48,7 +46,7 @@ class SectionTitle extends StatelessWidget {
 class SectionContent extends StatelessWidget {
   final String content;
 
-  SectionContent({required this.content});
+  const SectionContent({super.key, required this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -56,16 +54,18 @@ class SectionContent extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Text(
         content,
-        style: TextStyle(fontSize: 16),
+        style: const TextStyle(fontSize: 16),
       ),
     );
   }
 }
 
 class AdviceList extends StatelessWidget {
+  const AdviceList({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         AdviceCard(
           title: 'Reparar en lugar de reemplazar',
@@ -92,29 +92,29 @@ class AdviceCard extends StatelessWidget {
   final String title;
   final String description;
 
-  AdviceCard({required this.title, required this.description});
+  const AdviceCard({super.key, required this.title, required this.description});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Color.fromRGBO(106, 133, 160, 1),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               description,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
           ],
         ),

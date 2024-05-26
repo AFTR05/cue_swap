@@ -18,6 +18,7 @@ public interface ComplaintMapper {
      * @param source Objeto Complaint que contiene los detalles de la denuncia
      * @return Objeto ComplaintDTO que representa la denuncia en un DTO.
      */
+    @Mapping(target = "description", source = "source.description")
     ComplaintDTO mapFromEntity(Complaint source);
 
     /**
@@ -26,6 +27,7 @@ public interface ComplaintMapper {
      * @param source Objeto ComplaintDTO que contiene los detalles de la denuncia DTO
      * @return Objeto Complaint que representa la denuncia en entidad.
      */
+    @Mapping(target = "description", source = "source.description")
     Complaint mapFromDTO(ComplaintDTO source);
 
 

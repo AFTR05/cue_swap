@@ -7,5 +7,5 @@ import jakarta.persistence.JoinColumn;
 
 
 public enum State {
-    VENDIDO, CANCELADO, ENTRAMITE, DISPONIBLE, INTERCAMBIADO
+    VENDIDO, CANCELADO, DISPONIBLE, INTERCAMBIADO
 }

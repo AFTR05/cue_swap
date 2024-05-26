@@ -8,8 +8,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "leaders")
-public class Leader extends UserModel {
+@Table(name = "leader")
+public class Leader extends User {
     Dependence dependence;
 
 }

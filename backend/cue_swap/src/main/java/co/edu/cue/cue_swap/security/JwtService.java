@@ -1,6 +1,6 @@
 package co.edu.cue.cue_swap.security;
 
-import co.edu.cue.cue_swap.domain.entities.UserModel;
+import co.edu.cue.cue_swap.domain.entities.User;
 import co.edu.cue.cue_swap.infrastructure.repository.TokenRepository;
 import co.edu.cue.cue_swap.infrastructure.utils.Constants;
 import lombok.AllArgsConstructor;
@@ -50,7 +50,7 @@ public class JwtService {
                 .getPayload();
 
     }
-    public String generateToken(UserModel user) {
+    public String generateToken(User user) {
         String token = Jwts
                 .builder()
                 .subject(user.getUsername())

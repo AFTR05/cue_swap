@@ -1,19 +1,12 @@
 package co.edu.cue.cue_swap.services.impl;
 
-import co.edu.cue.cue_swap.domain.entities.Product;
 import co.edu.cue.cue_swap.domain.entities.Rating;
-import co.edu.cue.cue_swap.domain.entities.UserModel;
-import co.edu.cue.cue_swap.infrastructure.exception.ProductException;
 import co.edu.cue.cue_swap.infrastructure.exception.RatingException;
 import co.edu.cue.cue_swap.infrastructure.exception.TransactionException;
-import co.edu.cue.cue_swap.infrastructure.exception.UserException;
-import co.edu.cue.cue_swap.infrastructure.repository.ProductRepository;
 import co.edu.cue.cue_swap.infrastructure.repository.RatingRepository;
 import co.edu.cue.cue_swap.infrastructure.repository.TransactionRepository;
 import co.edu.cue.cue_swap.mapping.dtos.RatingDTO;
 import co.edu.cue.cue_swap.mapping.dtos.RatingRequestDTO;
-import co.edu.cue.cue_swap.mapping.dtos.StudentDTO;
-import co.edu.cue.cue_swap.mapping.mappers.ProductMapper;
 import co.edu.cue.cue_swap.mapping.mappers.RatingMapper;
 import co.edu.cue.cue_swap.services.RatingService;
 import lombok.AllArgsConstructor;

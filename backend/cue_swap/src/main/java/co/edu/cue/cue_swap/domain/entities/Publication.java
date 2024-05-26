@@ -18,7 +18,7 @@ public class Publication {
     private Product product;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private UserModel owner;
+    private User owner;
 
     @Column(length = 50)
     private String title;

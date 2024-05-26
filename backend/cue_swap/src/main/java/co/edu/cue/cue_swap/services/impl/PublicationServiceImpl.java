@@ -19,6 +19,7 @@ import lombok.AllArgsConstructor;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -68,7 +69,7 @@ public class PublicationServiceImpl implements PublicationService {
                     Publication dataModification = mapper.mapFromRequestDTO(publication);
                     dataModification.setProduct(product);
                     dataModification.setDataState(true);
-
+                    dataModification.setDate(LocalDate.now());
                     // Find the user by owner_id
                     return userRepository.findById(publication.owner_id())
                             .map(user -> {

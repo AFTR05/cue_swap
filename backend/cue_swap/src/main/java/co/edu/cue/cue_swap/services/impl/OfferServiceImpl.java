@@ -1,6 +1,7 @@
 package co.edu.cue.cue_swap.services.impl;
 
 import co.edu.cue.cue_swap.domain.entities.*;
+import co.edu.cue.cue_swap.domain.enums.OfferState;
 import co.edu.cue.cue_swap.infrastructure.exception.ComplaintException;
 import co.edu.cue.cue_swap.infrastructure.exception.ProductException;
 import co.edu.cue.cue_swap.infrastructure.exception.PublicationException;
@@ -14,12 +15,11 @@ import co.edu.cue.cue_swap.mapping.dtos.OfferDTO;
 import co.edu.cue.cue_swap.mapping.dtos.OfferRequestDTO;
 import co.edu.cue.cue_swap.mapping.dtos.SearchOfferDTO;
 import co.edu.cue.cue_swap.mapping.mappers.OfferMapper;
-import co.edu.cue.cue_swap.mapping.mappers.PublicationMapper;
 import co.edu.cue.cue_swap.services.OfferService;
 import lombok.AllArgsConstructor;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 @AllArgsConstructor
@@ -33,17 +33,23 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public OfferDTO createOffer(OfferRequestDTO offerRequestDTO) {
-        UserModel bidder = userRepository.findById(offerRequestDTO.bidder_id())
+
+        User bidder = userRepository.findById(offerRequestDTO.bidder_id())
                 .orElseThrow(() -> new UserException("Bidder not found"));
-        Product exchanged_product = productRepository.findById(offerRequestDTO.exchanged_product_id())
-                .orElseThrow(() -> new ProductException("Product not found"));
         Publication publication = publicationRepository.findById(offerRequestDTO.publication_id())
                 .orElseThrow(() -> new PublicationException("Publication not found"));
         bidder.setAvailable_points(bidder.getAvailable_points() + 5);
         Offer dataModification = mapper.mapFromRequestDTO(offerRequestDTO);
         dataModification.setBidder(bidder);
+        dataModification.setOfferState(OfferState.EN_ESPERA);
+        dataModification.setOffer_date(LocalDate.now());
         dataModification.setPublication(publication);
-        dataModification.setExchanged_product(exchanged_product);
+        dataModification.setExchanged_product(null);
+        if (offerRequestDTO.exchanged_product_id()!=null){
+            Product exchanged_product = productRepository.findById(offerRequestDTO.exchanged_product_id())
+                    .orElseThrow(() -> new ProductException("Product not found"));
+            dataModification.setExchanged_product(exchanged_product);
+        }
         try {
             Offer savedOffer = offerRepository.save(dataModification);
             return mapper.mapFromEntity(savedOffer);

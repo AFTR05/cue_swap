@@ -18,7 +18,7 @@ class SideMenuProvider extends ChangeNotifier{
   }
 
 
-  static Animation<double> movement = Tween<double>(begin: -200,end: 0)
+  static Animation<double> movement = Tween<double>(begin: -300,end: 0)
     .animate(CurvedAnimation(parent: menuController, curve: Curves.easeInOut));
 
   static Animation<double> opacity = Tween<double>(begin: 0,end: 1)
@@ -38,7 +38,6 @@ class SideMenuProvider extends ChangeNotifier{
     (isOpen)
       ? menuController.reverse()
       : menuController.forward();
-
     isOpen = !isOpen;
   }
   

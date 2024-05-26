@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "student")
-public class Student extends UserModel {
+public class Student extends User {
     @Enumerated(EnumType.STRING)
     private Career career;
     private Integer semester;
