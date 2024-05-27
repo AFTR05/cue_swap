@@ -1,5 +1,5 @@
+import 'package:cue_swap/ui/labels/custom_labels.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class MenuItem extends StatefulWidget {
   final String text;
@@ -45,10 +45,7 @@ class _MenuItemState extends State<MenuItem> {
                   const SizedBox(width: 10,),
                   Text(
                     widget.text,
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      color: Colors.white.withOpacity(0.9)
-                    ),
+                    style: CustomLabels.menuItem,
                   )
                 ],
               ),

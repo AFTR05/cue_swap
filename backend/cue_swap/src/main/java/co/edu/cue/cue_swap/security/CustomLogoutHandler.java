@@ -29,4 +29,6 @@ public class CustomLogoutHandler implements LogoutHandler {
             tokenRepository.save(storedToken);
         }
     }
+
+
 }

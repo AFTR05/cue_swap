@@ -15,6 +15,50 @@ class CustomLabels{
                 fontWeight: FontWeight.bold
               );
 
+  static TextStyle menuItem=GoogleFonts.poppins(
+                      fontSize: 16,
+                      color: Colors.white.withOpacity(0.9)
+                    );
+  
+  static TextStyle tableHeader=GoogleFonts.poppins(
+                      fontSize: 14,
+                      color: Colors.white
+                    );
+
+  static TextStyle tableData= GoogleFonts.inter(
+    color: Colors.black, 
+    fontSize: 14,
+    fontWeight: FontWeight.normal
+  );
+
+  static TextStyle h2 = GoogleFonts.roboto(
+    fontSize: 20,
+    fontWeight: FontWeight.w400
+  );
+  
+  static TextStyle navbarMessage=GoogleFonts.poppins(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w300
+                      
+                    );
+
+  static TextStyle imageDisplayedTitle=GoogleFonts.inter(
+                      fontSize: 17,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500
+                      
+                    );
+
+  static TextStyle imageDisplayedDescription=GoogleFonts.inter(
+                      fontSize: 12,
+                      color: Colors.black.withOpacity(0.9),
+                      fontWeight: FontWeight.w300
+                      
+                    );
+
+  
+
 
   static TextStyle hintFormStyle= GoogleFonts.inter(
     color: Colors.black, 

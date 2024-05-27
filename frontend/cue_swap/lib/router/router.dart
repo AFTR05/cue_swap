@@ -19,6 +19,7 @@ class Flurorouter {
   static String myRewardsRoute = '/dashboard/my_rewards';
   static String complaintsRoute = '/dashboard/complaints';
   static String institutionalBlogRoute = '/dashboard/institutional_blog';
+  static String profileRoute = '/dashboard/profile';
 
   static void configureRoutes(){
     // Auth Handler
@@ -34,6 +35,7 @@ class Flurorouter {
     router.define(myRewardsRoute, handler: DashboardHandlers.ownRewards, transitionType: TransitionType.none);
     router.define(complaintsRoute, handler: DashboardHandlers.complaints, transitionType: TransitionType.none);
     router.define(institutionalBlogRoute, handler: DashboardHandlers.institutionalBlog, transitionType: TransitionType.none);
+    router.define(profileRoute, handler: DashboardHandlers.profile, transitionType: TransitionType.none);
     
     //no page found
     router.notFoundHandler = NoPageFoundHandlers.noPageFound;

@@ -11,6 +11,7 @@ import 'package:cue_swap/ui/views/own_publications_view.dart';
 import 'package:cue_swap/ui/views/own_rewards_view.dart';
 import 'package:cue_swap/ui/views/own_transfers_view.dart';
 import 'package:cue_swap/ui/views/rewards_view.dart';
+import 'package:cue_swap/ui/views/user_view.dart';
 import 'package:fluro/fluro.dart';
 import 'package:provider/provider.dart';
 
@@ -114,6 +115,20 @@ class DashboardHandlers {
         .setCurrentPage(Flurorouter.institutionalBlogRoute);
       if ( authProvider.authStatus == AuthStatus.authenticated ) {
         return LayoutSwitcher().usePrincipalLayout(const InstitutionalBlogView());
+      } else {
+        return const AuthLayout();
+      }
+    }
+  );
+
+
+  static Handler profile = Handler(
+    handlerFunc: ( context, params ) {
+      final authProvider = Provider.of<AuthProvider>(context!);
+      Provider.of<SideMenuProvider>(context,listen: false)
+        .setCurrentPage(Flurorouter.profileRoute);
+      if ( authProvider.authStatus == AuthStatus.authenticated ) {
+        return LayoutSwitcher().usePrincipalLayout(const UserView());
       } else {
         return const AuthLayout();
       }

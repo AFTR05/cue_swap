@@ -24,6 +24,28 @@ class CustomInput {
     );
   }
 
+  static InputDecoration profileInputDecoration({
+    required String hint,
+    required String label,
+    required IconData icon,
+  }){
+    return InputDecoration(
+      border: const OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.black),
+    ),
+    disabledBorder: const OutlineInputBorder(
+      borderSide: BorderSide(color: Color.fromRGBO(76, 76, 82, 1)),
+    ),
+    enabled: false,
+    hintText: hint,
+    labelText: label,
+    prefixIcon: Icon(icon, color: Colors.black),
+    labelStyle: CustomLabels.labelFormStyle.copyWith(color: Colors.black),
+    hintStyle: CustomLabels.hintFormStyle.copyWith(color: Color.fromRGBO(76, 76, 82, 1)),
+
+    );
+  }
+
   static InputDecoration signUpInputDecoration({
     required String hint,
     required String label,

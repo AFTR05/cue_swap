@@ -25,7 +25,7 @@ public class LeaderController {
     @GetMapping("/get-all")
     public ResponseEntity<Map<String, List<LeaderDTO>>> getAllLeaders(){
         List<LeaderDTO> leaders = service.getAllLeaders();
-        Map<String, List<LeaderDTO>> response = ResponseMessageUtil.responseMessage("leader", leaders);
+        Map<String, List<LeaderDTO>> response = ResponseMessageUtil.responseMessage("user_data", leaders);
         return ResponseEntity.ok(response);
     }
 
@@ -36,7 +36,7 @@ public class LeaderController {
                                                                  @Valid
                                                                LeaderRequestDTO leader){
         LeaderAuthDTO createdLeader = service.createLeader(leader);
-        Map<String, LeaderAuthDTO> response = ResponseMessageUtil.responseMessage("leader", createdLeader);
+        Map<String, LeaderAuthDTO> response = ResponseMessageUtil.responseMessage("user_data", createdLeader);
         return ResponseEntity.ok(response);
     }
 
@@ -46,7 +46,7 @@ public class LeaderController {
     public ResponseEntity<Map<String, LeaderDTO>> getLeaderById(@PathVariable
                                                                   Long id) {
         LeaderDTO student = service.getOneLeader(id);
-        Map<String, LeaderDTO> response = ResponseMessageUtil.responseMessage("leader", student);
+        Map<String, LeaderDTO> response = ResponseMessageUtil.responseMessage("user_data", student);
         return ResponseEntity.ok(response);
     }
 
@@ -57,7 +57,7 @@ public class LeaderController {
                                                                  @Valid
                                                                  LeaderRequestDTO leaderRequestDTO){
         LeaderDTO leader = service.updateLeader(leaderRequestDTO);
-        Map<String, LeaderDTO> response = ResponseMessageUtil.responseMessage("leader", leader);
+        Map<String, LeaderDTO> response = ResponseMessageUtil.responseMessage("user_data", leader);
         return ResponseEntity.ok(response);
     }
 

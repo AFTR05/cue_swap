@@ -6,10 +6,10 @@ class LoginFormProvider extends ChangeNotifier{
   final GlobalKey<FormState> formkey = GlobalKey<FormState> ();
   
 
-  String email = '';
+  String username = '';
   String password = '';
 
-  bool get isValid => (Validator.emptyValidator(email) && Validator.emailValidator(email)) && 
+  bool get isValid => (Validator.emptyValidator(username) && Validator.numbersLettersValidator(username)) && 
                       (Validator.emptyValidator(password) && Validator.passwordValidator(password));
 
 

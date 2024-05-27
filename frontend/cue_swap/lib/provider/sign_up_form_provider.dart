@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class StudentData{
   String career;
-  int semester;
+  String semester;
   StudentData(this.career,this.semester);
 }
 
@@ -20,7 +20,7 @@ class SignUpFormProvider extends ChangeNotifier{
   
 
   String name = '';
-  String lastname = '';
+  String username = '';
   String email = '';
   String nid = '';
   String password = '';
@@ -29,31 +29,34 @@ class SignUpFormProvider extends ChangeNotifier{
   StudentData? studentData;
   LeaderData? leaderData;
 
-  bool get isValid => (Validator.emptyValidator(name) && Validator.letterValidator(name)) && 
-                      (Validator.emptyValidator(lastname) && Validator.letterValidator(lastname)) && 
+  bool get isValid => ((Validator.emptyValidator(name) && Validator.nameValidator(name)) && 
+                      (Validator.emptyValidator(username) && Validator.numbersLettersValidator(username)) && 
                       (Validator.emptyValidator(email) && Validator.emailValidator(email)) && 
-                      (Validator.emptyValidator(nid) && Validator.nidValidator(nid)) && 
+                      (Validator.emptyValidator(nid) && Validator.numberValidator(nid)) && 
                       (Validator.emptyValidator(confirmPassword) && Validator.passwordValidator(confirmPassword)) && 
                       (Validator.emptyValidator(password) && Validator.passwordValidator(password)) &&
+                      password==confirmPassword) &&
                       (
-                          (roleOption != null) &&
+                          (roleOption != null) && (
                           (
                             (
                               roleOption == true &&
+                              
                               (Validator.emptyValidator(studentData!.career)) &&
-                              (Validator.semesterValidator(studentData!.semester)))
+                              (Validator.numberBetween1And12Validator(studentData!.semester)))
                             ) ||
                             (
                               roleOption == false &&
-                              (Validator.emailValidator(leaderData!.dependence) 
+                              (Validator.emptyValidator(leaderData!.dependence) 
                             )
+                          )
                           )
                       );
                       
 
 
   SignUpFormProvider(){
-    studentData = StudentData('', 0);
+    studentData = StudentData('', "");
     leaderData = LeaderData('');
   }
 

@@ -46,7 +46,7 @@ class StudentFormData extends StatelessWidget {
                 const SizedBox(height: 25),
                 TextFormField(
                       onChanged: (value){
-                        signUpFormProvider.studentData!.semester=value as int;
+                        signUpFormProvider.studentData!.semester=value;
                         signUpFormProvider.updateButtonState();
                       },
                       keyboardType: TextInputType.number,

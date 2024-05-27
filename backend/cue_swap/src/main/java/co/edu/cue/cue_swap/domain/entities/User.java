@@ -21,7 +21,7 @@ public class User implements UserDetails, Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 10)
+    @Column(length = 15)
     private String nid;
 
     private Integer available_points;

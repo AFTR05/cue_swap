@@ -10,4 +10,18 @@ class NavigationService {
   static replaceTo(String routeName){
     return navigatorKey.currentState!.pushReplacementNamed(routeName);
   }
+
+  static void refresh() {
+  final overlayContext = navigatorKey.currentState?.overlay?.context;
+  if (overlayContext != null) {
+    final currentRoute = ModalRoute.of(overlayContext);
+    if (currentRoute != null) {
+      navigatorKey.currentState?.pushNamedAndRemoveUntil(
+        currentRoute.settings.name!,
+        (route) => false,
+      );
+    }
+  }
+}
+
 }

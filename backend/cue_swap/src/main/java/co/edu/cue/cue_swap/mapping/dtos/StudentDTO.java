@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public record StudentDTO(
+        @JsonProperty("id") Long id,
         @JsonProperty("nid") String nid,
         @JsonProperty("name") String name,
         @JsonProperty("username") String username,
@@ -22,9 +23,10 @@ public record StudentDTO(
         @JsonProperty("user_reports") List<Complaint> user_reports,
         @JsonProperty("made_reports") List<Complaint> made_reports,
         @JsonProperty("rewards") List<Reward> rewards,
+        @JsonProperty("role") Role role,
         @JsonProperty("semester") Integer semester,
         @JsonProperty("career")Career career,
-        @JsonProperty("role") Role role,
+
         Boolean data_state){
 
 }

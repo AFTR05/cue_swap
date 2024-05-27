@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class UserAuthDTO {
-    private User user;
+    private UserDTO user;
     private AuthenticationResponseDTO authenticationResponseDTO;
     private StatusDTO statusDTO;
 }

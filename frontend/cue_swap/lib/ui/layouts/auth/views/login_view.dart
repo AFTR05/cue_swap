@@ -37,19 +37,19 @@ class LoginView extends StatelessWidget {
                       TextFormField( 
                         onFieldSubmitted: (_) => onFormSubmit(loginFormProvider, authProvider,context),
                         onChanged: (value){
-                          loginFormProvider.email=value;
+                          loginFormProvider.username=value;
                           loginFormProvider.updateButtonState();
                         },
                         validator: (value){
-                          return Validator.emailValidator(value)
+                          return Validator.numbersLettersValidator(value)
                               ? null
-                              : 'Correo electronico no valido';
+                              : 'Nombre de usuario no valido';
                         },
                         style: CustomLabels.formStyle,
                         decoration: CustomInput.loginInputDecoration(
-                          hint: 'Ingresa tu correo electronico', 
-                          label: 'Correo electronico',
-                          icon: Icons.email_outlined),
+                          hint: 'Ingresa tu nombre de usuario', 
+                          label: 'Nombre de usuario',
+                          icon: Icons.person_outline),
                       ),
                       const SizedBox(height: 20),
                       PasswordInput(
@@ -113,7 +113,7 @@ class LoginView extends StatelessWidget {
     final isValid = loginFormProvider.validateForm();
     if ( isValid ) {
       NotificationsService.showBusyIndicator(context);
-      authProvider.login(loginFormProvider.email, loginFormProvider.password);
+      authProvider.login(loginFormProvider.username, loginFormProvider.password);
     }
     Navigator.of(context).pop();                 
   }

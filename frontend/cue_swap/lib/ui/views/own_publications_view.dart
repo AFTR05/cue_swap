@@ -13,10 +13,10 @@ class OwnPublicationsView extends StatelessWidget {
       child: ListView(
         physics: const ClampingScrollPhysics(),
         children: [
-          Text('OwnPublicationsView',style: CustomLabels.h1),
+          Text('Mis publicaciones',style: CustomLabels.h1),
           const SizedBox(height: 10),
           const WhiteCard(
-            title: 'Sales stadistics',
+            title: 'Mis publicaciones',
             child: Text('Hola mundo')
           )
         ],

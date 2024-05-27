@@ -56,9 +56,23 @@ public class RewardServiceImpl implements RewardService {
         }
         rewardUserDTO.setReward(mapper.mapFromEntity(reward));
         rewardUserDTO.setUser(user);
+        decreaseAvailablePoint(rewardUserDTO);
+
         userRepository.save(user);
         return rewardUserDTO;
     }
+
+    public void decreaseAvailablePoint(RewardUserDTO rewardUserDTO){
+        if (rewardUserDTO.getReward().points_value() <= rewardUserDTO.getUser().getAvailable_points()) {
+            rewardUserDTO.getUser().setAvailable_points(
+                    rewardUserDTO.getUser().getAvailable_points()-rewardUserDTO.getReward().points_value()
+            );
+        } else {
+            throw new RewardException("Not enough points");
+
+        }
+    }
+
 
     @Override
     public RewardDTO getOneRating(Long reward_id) {

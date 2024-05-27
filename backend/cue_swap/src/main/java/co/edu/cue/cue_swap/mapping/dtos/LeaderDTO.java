@@ -10,6 +10,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 public record LeaderDTO (
+        @JsonProperty("id") Long id,
         @JsonProperty("nid") String nid,
         @JsonProperty("name") String name,
         @JsonProperty("username") String username,

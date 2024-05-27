@@ -47,7 +47,7 @@ class SignUpView extends StatelessWidget {
                                   signUpFormProvider.updateButtonState();
                                 },
                                 validator: (value) {
-                                  return Validator.letterValidator(value) && Validator.emptyValidator(value)
+                                  return Validator.nameValidator(value)
                                       ? null
                                       : 'Nombre no válido';
                                 },
@@ -58,26 +58,26 @@ class SignUpView extends StatelessWidget {
                                   icon: Icons.account_circle_outlined,
                                 ),
                               ),
-                            ),
+                            )
+                            ,
                             SizedBox(width: 80), // Espaciado entre los campos de entrada
                             Expanded(
                               child: TextFormField( 
                                 onFieldSubmitted: (_) => onFormSubmit(signUpFormProvider, authProvider,context),
                                 onChanged: (value) {
-                                  signUpFormProvider.lastname = value;
+                                  signUpFormProvider.username = value;
                                   signUpFormProvider.updateButtonState();
                                 },
                                 validator: (value) {
-                                  return Validator.letterValidator(value) && Validator.emptyValidator(value)
-                                      ? null
-                                      : 'Apellido no válido';
+                                  return Validator.numbersLettersValidator(value)
+                                    ? null
+                                    : 'Nombre de usuario no valido';
                                 },
                                 style: CustomLabels.formStyle,
                                 decoration: CustomInput.loginInputDecoration(
-                                  hint: 'Ingresa tu apellido', 
-                                  label: 'Apellido',
-                                  icon: Icons.account_circle_outlined,
-                                ),
+                                  hint: 'Ingresa tu nombre de usuario', 
+                                  label: 'Nombre de usuario',
+                                  icon: Icons.person_outline),
                               ),
                             ),
                           ],
@@ -111,11 +111,11 @@ class SignUpView extends StatelessWidget {
                               child: TextFormField( 
                                 onFieldSubmitted: (_) => onFormSubmit(signUpFormProvider, authProvider,context),
                                 onChanged: (value) {
-                                  signUpFormProvider.lastname = value;
+                                  signUpFormProvider.nid = value;
                                   signUpFormProvider.updateButtonState();
                                 },
                                 validator: (value) {
-                                  return Validator.nidValidator(value) && Validator.emptyValidator(value)
+                                  return Validator.numberValidator(value) && Validator.emptyValidator(value)
                                       ? null
                                       : 'NID no válido';
                                 },
@@ -225,6 +225,28 @@ class SignUpView extends StatelessWidget {
     final isValid = signUpFormProvider.validateForm();
     if ( isValid ) {
       NotificationsService.showBusyIndicator(context);
+      if (signUpFormProvider.roleOption!) {
+        authProvider.registerStudent(
+          signUpFormProvider.name, 
+          signUpFormProvider.nid, 
+          signUpFormProvider.username, 
+          signUpFormProvider.email, 
+          signUpFormProvider.password, 
+          "STUDENT",
+          int.parse(signUpFormProvider.studentData!.semester),
+          signUpFormProvider.studentData!.career
+        );
+      } else {
+        authProvider.registerLeader(
+          signUpFormProvider.name, 
+          signUpFormProvider.nid, 
+          signUpFormProvider.username, 
+          signUpFormProvider.email, 
+          signUpFormProvider.password,
+          "LEADER", 
+          signUpFormProvider.leaderData!.dependence
+        );
+      }
     }
     Navigator.of(context).pop();                 
   }

@@ -13,10 +13,10 @@ class OwnTransfersView extends StatelessWidget {
       child: ListView(
         physics: const ClampingScrollPhysics(),
         children: [
-          Text('OwnTransfersView',style: CustomLabels.h1),
+          Text('Mis transferencias',style: CustomLabels.h1),
           const SizedBox(height: 10),
           const WhiteCard(
-            title: 'Sales stadistics',
+            title: 'Mis transferencias',
             child: Text('Hola mundo')
           )
         ],

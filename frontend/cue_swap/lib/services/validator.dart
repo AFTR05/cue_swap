@@ -2,6 +2,21 @@
 import 'package:email_validator/email_validator.dart';
 
 class Validator {
+  static bool numbersLettersValidator(String? value) {
+  return (RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value ?? '')) 
+    ? true : false; 
+  }
+
+  static bool nameValidator(String? value) {
+    value ?? '';
+    if (value!.isEmpty) {
+      return false;
+    }
+    final nameRegex = RegExp(r'^[a-zA-Z\s]+$');
+    return nameRegex.hasMatch(value);
+  }
+
+
   static final RegExp passwordRegexp = RegExp(
     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[!@#\$&*~]).{8,}$',
   );
@@ -20,22 +35,21 @@ class Validator {
     return value != null && value > 0;
   }
 
-  static bool nidValidator(String? cedula) {
-  
-  RegExp regex = RegExp(r'^\d{2}[.]?\d{3}[.]?\d{3}[.]?$');
-
-  if (!regex.hasMatch(cedula!)) return false;
-
-  List<int> digitos = cedula.replaceAll('.', '').split('').map(int.parse).toList();
-  int suma = digitos.fold(0, (acc, digit) => acc + digit);
-  int digitoVerificadorCalculado = (suma * 9) % 10;
-
-  return digitoVerificadorCalculado == digitos[9];
-}
 
   static bool emptyValidator(String? value) {
     return ((value ?? '').isNotEmpty) ? true : false;
     
+  }
+
+  
+
+  static bool numberValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return false;
+    }
+
+    final numericRegex = RegExp(r'^\d{1,15}$');
+    return numericRegex.hasMatch(value);
   }
 
   static bool numberBetween1And12Validator(String? value) {

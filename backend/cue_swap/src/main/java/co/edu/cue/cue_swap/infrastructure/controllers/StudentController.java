@@ -25,7 +25,7 @@ public class StudentController {
     @GetMapping("/get-all")
     public ResponseEntity<Map<String, List<StudentDTO>>> getAllStudents(){
         List<StudentDTO> students = service.getAllStudents();
-        Map<String, List<StudentDTO>> response = ResponseMessageUtil.responseMessage("student", students);
+        Map<String, List<StudentDTO>> response = ResponseMessageUtil.responseMessage("user_data", students);
         return ResponseEntity.ok(response);
     }
 
@@ -36,7 +36,7 @@ public class StudentController {
                                            @Valid
                                            StudentRequestDTO student){
         StudentAuthDTO createdStudent = service.createStudent(student);
-        Map<String, StudentAuthDTO> response = ResponseMessageUtil.responseMessage("student", createdStudent);
+        Map<String, StudentAuthDTO> response = ResponseMessageUtil.responseMessage("user_data", createdStudent);
         return ResponseEntity.ok(response);
     }
 
@@ -46,7 +46,7 @@ public class StudentController {
     public ResponseEntity<Map<String, StudentDTO>> getStudentById(@PathVariable
                                            Long id) {
         StudentDTO student = service.getOneStudent(id);
-        Map<String, StudentDTO> response = ResponseMessageUtil.responseMessage("student", student);
+        Map<String, StudentDTO> response = ResponseMessageUtil.responseMessage("user_data", student);
         return ResponseEntity.ok(response);
     }
 
@@ -57,7 +57,7 @@ public class StudentController {
                                            @Valid
                                            StudentRequestDTO studentRequestDTO){
         StudentDTO student = service.updateStudent(studentRequestDTO);
-        Map<String, StudentDTO> response = ResponseMessageUtil.responseMessage("student", student);
+        Map<String, StudentDTO> response = ResponseMessageUtil.responseMessage("user_data", student);
         return ResponseEntity.ok(response);
     }
 
