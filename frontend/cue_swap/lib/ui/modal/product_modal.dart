@@ -34,7 +34,7 @@ class ProductModal extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 20, top: 20),
-                      child: Text('Nueva denuncia', style: CustomLabels.h1),
+                      child: Text('Nuevo producto', style: CustomLabels.h1),
                     ),
                     IconButton(
                       onPressed: () => Navigator.of(context).pop(),

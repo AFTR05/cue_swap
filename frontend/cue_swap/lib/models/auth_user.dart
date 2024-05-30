@@ -13,12 +13,12 @@ class AuthUser {
     String email;
     String password;
     int availablePoints;
-    List<Reward> rewards;
-    List<Complaint> userReports;
-    List<Complaint> madeReports;
+    List<Reward>? rewards;
+    List<Complaint>? userReports;
+    List<Complaint>? madeReports;
     List<Product> products;
-    List<Publication> publications;
-    List<Offer> offers;
+    List<Publication>? publications;
+    List<Offer>? offers;
     String role;
 
     AuthUser({
@@ -50,13 +50,13 @@ class AuthUser {
         email: json["email"],
         password: json["password"],
         availablePoints: json["available_points"],
-        rewards: List<Reward>.from(json["rewards"].map((x) => Reward.fromMap(x))),
-        userReports: List<Complaint>.from(json["user_reports"].map((x) => Complaint.fromMap(x))),
+        rewards: json["rewards"] != null ? List<Reward>.from(json["rewards"].map((x) => Reward.fromMap(x))) : <Reward>[],
+        userReports: json["user_reports"]!= null ? List<Complaint>.from(json["user_reports"].map((x) => Complaint.fromMap(x))):<Complaint>[],
         role: json["role"],  
-        madeReports: List<Complaint>.from(json["made_reports"].map((x) => Complaint.fromMap(x))),
+        madeReports: json["made_reports"] != null ? List<Complaint>.from(json["made_reports"].map((x) => Complaint.fromMap(x))):<Complaint>[],
         products: List<Product>.from(json["products"].map((x)=> Product.fromMap(x))),
-        offers: List<Offer>.from(json["offers"].map((x)=> Offer.fromMap(x))),
-        publications: List<Publication>.from(json["publications"].map((x)=> Publication.fromMap(x)))
+        offers: json["offers"] != null ? List<Offer>.from(json["offers"].map((x)=> Offer.fromMap(x))):[],
+        publications: json["publications"] != null ? List<Publication>.from(json["publications"].map((x)=> Publication.fromMap(x))):<Publication>[]
     );
 
     Map<String, dynamic> toMap() => {
@@ -67,12 +67,12 @@ class AuthUser {
         "email": email,
         "password": password,
         "available_points": availablePoints,
-        "rewards": List<Reward>.from(rewards.map((x) => x.toMap())),
-        "user_reports": List<Complaint>.from(userReports.map((x) => x.toMap())),
-        "made_reports": List<Complaint>.from(madeReports.map((x) => x.toMap())),
+        "rewards": rewards,
+        "user_reports": userReports,
+        "made_reports": madeReports,
         "products": List<Product>.from(products.map((x)=> x.toMap())),
-        "publications": List<Publication>.from(publications.map((x)=> x.toMap())),
-        "offers": List<Offer>.from(offers.map((x)=> x.toMap())),
+        "publications": publications,
+        "offers": offers,
         "role": role,
     };
 }

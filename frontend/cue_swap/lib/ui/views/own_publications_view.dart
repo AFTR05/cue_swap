@@ -50,7 +50,7 @@ class _OwnPublicationsViewState extends State<OwnPublicationsView> {
                   DataColumn(label: Text('Dueño', style: CustomLabels.tableHeader)),
                   DataColumn(label: Text('Fecha', style: CustomLabels.tableHeader)),
                 ],
-                source: OwnPublicationsDTS(publications, context),
+                source: OwnPublicationsDTS(publications!, context),
                 rowsPerPage: _rowsPerPage,
                 onRowsPerPageChanged: (value) {
                   setState(() {

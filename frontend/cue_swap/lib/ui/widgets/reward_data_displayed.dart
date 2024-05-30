@@ -9,7 +9,7 @@ class RewardDataDisplayed extends StatelessWidget {
   final String description;
 
   const RewardDataDisplayed({super.key, 
-    required this.imageUrl,
+    this.imageUrl='paquete',
     this.width = 200,
     this.height = 200,
     required this.title,
@@ -26,11 +26,16 @@ class RewardDataDisplayed extends StatelessWidget {
           Center(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(2),
-              child: Image.network(
-                imageUrl,
-                height: height * 0.6,
-                fit: BoxFit.cover,
-              ),
+              child: imageUrl != "paquete" 
+                ? Image.network(
+                    imageUrl,
+                    height: height * 0.6,
+                    fit: BoxFit.cover)
+                : Image.asset("reward.png",
+                  height: height * 0.6,
+                    fit: BoxFit.cover
+                )
+              ,
             ),
           ),
           Center(

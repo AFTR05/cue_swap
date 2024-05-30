@@ -49,7 +49,7 @@ class _ComplaintsViewState extends State<ComplaintsView> {
                     DataColumn(label: Text('Denunciado',style: CustomLabels.tableHeader)),
                     DataColumn(label: Text('Descripción',style: CustomLabels.tableHeader)),
                   ],
-                  source: MadeReportsDTS(userReports, context),
+                  source: MadeReportsDTS(userReports!, context),
                   rowsPerPage: _rowsPerPage,
                   onRowsPerPageChanged: (value){
                     setState(() {

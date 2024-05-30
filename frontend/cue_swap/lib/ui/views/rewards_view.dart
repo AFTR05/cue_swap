@@ -51,7 +51,6 @@ class _RewardsViewState extends State<RewardsView> {
                   buttonControllerEnable: userProvider.user!.availablePoints >= reward.pointsValue,
                   valor: reward.pointsValue,
                   userPoints: userProvider.user!.availablePoints,
-                  imageUrl: 'https://cdn-icons-png.flaticon.com/512/6150/6150035.png',
                   title: reward.title,
                   description: reward.description,
                 );

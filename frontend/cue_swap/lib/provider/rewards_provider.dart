@@ -14,8 +14,7 @@ class RewardsProvider extends ChangeNotifier {
   getRewards() async {
     final resp = await SwapCUEApi.get('api/reward/get-all');
     final rewardsResp = RewardsResponse.fromMap(resp);
-    rewards = [...rewardsResp.rewards];   
-    print(rewards);
+    rewards = [...rewardsResp.rewards];
     notifyListeners();
   }
 

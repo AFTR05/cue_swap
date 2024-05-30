@@ -34,9 +34,7 @@ class LoginView extends StatelessWidget {
                     key: loginFormProvider.formkey,
                     child:  Column(
                       children: [
-                      TextFormField( 
-                        onFieldSubmitted: (_) => onFormSubmit(loginFormProvider, authProvider,context),
-                        onChanged: (value){
+                      TextFormField(onChanged: (value){
                           loginFormProvider.username=value;
                           loginFormProvider.updateButtonState();
                         },
@@ -53,7 +51,6 @@ class LoginView extends StatelessWidget {
                       ),
                       const SizedBox(height: 20),
                       PasswordInput(
-                        onFieldSubmitted: (_) => onFormSubmit(loginFormProvider, authProvider,context),
                         onChanged: (value){
                           loginFormProvider.password=value;
                           loginFormProvider.updateButtonState();

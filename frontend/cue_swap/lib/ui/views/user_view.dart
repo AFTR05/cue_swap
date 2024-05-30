@@ -46,25 +46,23 @@ class _UserViewState extends State<UserView> {
           ),
           Padding(
             padding: EdgeInsets.only(left: 20, right: 20),
-            child: Expanded(
-              child: PaginatedDataTable(
-                headingRowColor: const MaterialStatePropertyAll(
-                  Color.fromRGBO(106, 133, 160, 1)
-                ),
-                columns: [
-                  DataColumn(label: Text('Denunciado', style: CustomLabels.tableHeader)),
-                  DataColumn(label: Text('Denunciador',style: CustomLabels.tableHeader)),
-                  DataColumn(label: Text('Descripción',style: CustomLabels.tableHeader)),
-                ],
-                source: UserReportsDTS(userReports, context),
-                rowsPerPage: _rowsPerPage,
-                onRowsPerPageChanged: (value){
-                  setState(() {
-                    _rowsPerPage=value ?? 10; 
-                  });
-                },
-                header: Text('Esta es la lista de todas los reportes del usuario', maxLines: 2, style: CustomLabels.navbarMessage),
+            child: PaginatedDataTable(
+              headingRowColor: const MaterialStatePropertyAll(
+                Color.fromRGBO(106, 133, 160, 1)
               ),
+              columns: [
+                DataColumn(label: Text('Denunciado', style: CustomLabels.tableHeader)),
+                DataColumn(label: Text('Denunciador',style: CustomLabels.tableHeader)),
+                DataColumn(label: Text('Descripción',style: CustomLabels.tableHeader)),
+              ],
+              source: UserReportsDTS(userReports!, context),
+              rowsPerPage: _rowsPerPage,
+              onRowsPerPageChanged: (value){
+                setState(() {
+                  _rowsPerPage=value ?? 10; 
+                });
+              },
+              header: Text('Esta es la lista de todas los reportes del usuario', maxLines: 2, style: CustomLabels.navbarMessage),
             ),
           ),
         ],

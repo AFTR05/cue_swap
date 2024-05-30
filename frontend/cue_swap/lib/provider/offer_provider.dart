@@ -13,7 +13,8 @@ class OfferProvider extends ChangeNotifier {
       "publication_id":publicationId,
       "bidder_id": authProvider.user!.id,
       "monetary_value": monetaryValue,
-      "exchanged_product_id": exchangedProductId
+      "exchanged_product_id": exchangedProductId != 0 ? exchangedProductId : null
+      
     };
     SwapCUEApi.post("api/offer/create",data).then(
       (json){

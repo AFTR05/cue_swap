@@ -45,7 +45,7 @@ class _OwnOffersViewState extends State<OwnOffersView> {
                   DataColumn(label: Text('Valor', style: CustomLabels.tableHeader)),
                   DataColumn(label: Text('Fecha', style: CustomLabels.tableHeader)),
                 ],
-                source: OwnOffersDTS(user.offers, context),
+                source: OwnOffersDTS(user.offers!, context),
                 rowsPerPage: _rowsPerPage,
                 onRowsPerPageChanged: (value) {
                   setState(() {

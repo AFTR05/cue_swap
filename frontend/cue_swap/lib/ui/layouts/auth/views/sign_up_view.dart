@@ -41,7 +41,6 @@ class SignUpView extends StatelessWidget {
                           children: [
                             Expanded(
                               child: TextFormField( 
-                                onFieldSubmitted: (_) => onFormSubmit(signUpFormProvider, authProvider,context),
                                 onChanged: (value) {
                                   signUpFormProvider.name = value;
                                   signUpFormProvider.updateButtonState();
@@ -63,7 +62,6 @@ class SignUpView extends StatelessWidget {
                             SizedBox(width: 80), // Espaciado entre los campos de entrada
                             Expanded(
                               child: TextFormField( 
-                                onFieldSubmitted: (_) => onFormSubmit(signUpFormProvider, authProvider,context),
                                 onChanged: (value) {
                                   signUpFormProvider.username = value;
                                   signUpFormProvider.updateButtonState();
@@ -88,7 +86,6 @@ class SignUpView extends StatelessWidget {
                           children: [
                             Expanded(
                               child: TextFormField( 
-                                onFieldSubmitted: (_) => onFormSubmit(signUpFormProvider, authProvider,context),
                                 onChanged: (value) {
                                   signUpFormProvider.email = value;
                                   signUpFormProvider.updateButtonState();
@@ -109,7 +106,6 @@ class SignUpView extends StatelessWidget {
                             SizedBox(width: 80), // Espaciado entre los campos de entrada
                             Expanded(
                               child: TextFormField( 
-                                onFieldSubmitted: (_) => onFormSubmit(signUpFormProvider, authProvider,context),
                                 onChanged: (value) {
                                   signUpFormProvider.nid = value;
                                   signUpFormProvider.updateButtonState();
@@ -135,7 +131,6 @@ class SignUpView extends StatelessWidget {
                           children: [
                             Expanded(
                               child: PasswordInput(
-                                onFieldSubmitted: (_) => onFormSubmit(signUpFormProvider, authProvider,context),
                                 onChanged: (value){
                                   signUpFormProvider.password=value;
                                   signUpFormProvider.updateButtonState();
@@ -147,7 +142,6 @@ class SignUpView extends StatelessWidget {
                             SizedBox(width: 80), // Espaciado entre los campos de entrada
                             Expanded(
                               child: PasswordInput(
-                                onFieldSubmitted: (_) => onFormSubmit(signUpFormProvider, authProvider,context),
                                 onChanged: (value){
                                   signUpFormProvider.confirmPassword=value;
                                   signUpFormProvider.updateButtonState();
