@@ -46,4 +46,6 @@ class User {
         "available_points": availablePoints,
         "role": role,
     };
+
+    
 }

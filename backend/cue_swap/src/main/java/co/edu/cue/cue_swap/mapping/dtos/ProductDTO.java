@@ -5,7 +5,7 @@ import co.edu.cue.cue_swap.domain.enums.Category;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record ProductDTO (
-
+        @JsonProperty("id") Long id,
         @JsonProperty("name") String name,
         @JsonProperty("image") String image,
         @JsonProperty("price") Double price,

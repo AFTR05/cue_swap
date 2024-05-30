@@ -54,6 +54,10 @@ public class User implements UserDetails, Serializable {
     @JsonIgnore
     private List<Complaint> made_reports;
 
+    @OneToMany(mappedBy = "bidder",cascade = CascadeType.REMOVE, fetch = FetchType.LAZY,  orphanRemoval = true)
+    @JsonIgnore
+    private List<Offer> offers;
+
     @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinTable(name = "user_rewards")
     @JsonIgnore

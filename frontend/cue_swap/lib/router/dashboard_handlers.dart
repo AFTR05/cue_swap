@@ -6,6 +6,7 @@ import 'package:cue_swap/ui/layouts/auth/auth_layout.dart';
 import 'package:cue_swap/ui/views/complaints_view.dart';
 import 'package:cue_swap/ui/views/dashboard_view.dart';
 import 'package:cue_swap/ui/views/institutional_blog_view.dart';
+import 'package:cue_swap/ui/views/own_offers_view.dart';
 import 'package:cue_swap/ui/views/own_products_view.dart';
 import 'package:cue_swap/ui/views/own_publications_view.dart';
 import 'package:cue_swap/ui/views/own_rewards_view.dart';
@@ -50,6 +51,19 @@ class DashboardHandlers {
         .setCurrentPage(Flurorouter.myProductsRoute);
       if ( authProvider.authStatus == AuthStatus.authenticated ) {
         return LayoutSwitcher().usePrincipalLayout(const OwnProductsView());
+      } else {
+        return const AuthLayout();
+      }
+    }
+  );
+
+  static Handler ownOffers = Handler(
+    handlerFunc: ( context, params ) {
+      final authProvider = Provider.of<AuthProvider>(context!);
+      Provider.of<SideMenuProvider>(context,listen: false)
+        .setCurrentPage(Flurorouter.myOffersRoute);
+      if ( authProvider.authStatus == AuthStatus.authenticated ) {
+        return LayoutSwitcher().usePrincipalLayout(const OwnOffersView());
       } else {
         return const AuthLayout();
       }

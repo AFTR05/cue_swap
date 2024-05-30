@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:universal_html/html.dart' as html;
 
 class NavigationService {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -12,16 +13,7 @@ class NavigationService {
   }
 
   static void refresh() {
-  final overlayContext = navigatorKey.currentState?.overlay?.context;
-  if (overlayContext != null) {
-    final currentRoute = ModalRoute.of(overlayContext);
-    if (currentRoute != null) {
-      navigatorKey.currentState?.pushNamedAndRemoveUntil(
-        currentRoute.settings.name!,
-        (route) => false,
-      );
-    }
-  }
+    html.window.location.reload();
 }
 
 }

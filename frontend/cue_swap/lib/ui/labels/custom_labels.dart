@@ -22,7 +22,7 @@ class CustomLabels{
   
   static TextStyle tableHeader=GoogleFonts.poppins(
                       fontSize: 14,
-                      color: Colors.white
+                      color: Colors.white.withOpacity(0.9)
                     );
 
   static TextStyle tableData= GoogleFonts.inter(
@@ -30,6 +30,12 @@ class CustomLabels{
     fontSize: 14,
     fontWeight: FontWeight.normal
   );
+
+  static TextStyle priceText = GoogleFonts.poppins(
+                fontSize: 16,
+                color: Colors.green,
+                fontWeight: FontWeight.bold,
+              );
 
   static TextStyle h2 = GoogleFonts.roboto(
     fontSize: 20,

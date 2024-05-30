@@ -1,21 +1,18 @@
-import 'package:cue_swap/datatables/own_publications_datasource.dart';
+import 'package:cue_swap/datatables/own_offers.datasource.dart';
 import 'package:cue_swap/provider/product_provider.dart';
 import 'package:cue_swap/ui/labels/custom_labels.dart';
-import 'package:cue_swap/ui/modal/create_publication_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:cue_swap/provider/auth_provider.dart';
-import 'package:cue_swap/ui/button/custom_icon_button.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-class OwnPublicationsView extends StatefulWidget {
-  const OwnPublicationsView({super.key});
+class OwnOffersView extends StatefulWidget {
+  const OwnOffersView({super.key});
 
   @override
-  State<OwnPublicationsView> createState() => _OwnPublicationsViewState();
+  State<OwnOffersView> createState() => _OwnOffersViewState();
 }
 
-class _OwnPublicationsViewState extends State<OwnPublicationsView> {
+class _OwnOffersViewState extends State<OwnOffersView> {
 
   @override
   void initState() {
@@ -26,14 +23,12 @@ class _OwnPublicationsViewState extends State<OwnPublicationsView> {
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
   @override
   Widget build(BuildContext context) {
-    final productProvider = Provider.of<ProductProvider>(context);
     final user = Provider.of<AuthProvider>(context).user!;
-    final publications = user.publications;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         children: [
-          Text('Mis publicaciones', style: CustomLabels.h1),
+          Text('Mis ofertas', style: CustomLabels.h1),
           const SizedBox(height: 10),
           Expanded(
             child: SingleChildScrollView(
@@ -43,14 +38,14 @@ class _OwnPublicationsViewState extends State<OwnPublicationsView> {
                 ),
                 
                 columns: [
-                  DataColumn(label: Text('Titulo', style: CustomLabels.tableHeader)),
-                  DataColumn(label: Text('Descripción', style: CustomLabels.tableHeader)),
+                  DataColumn(label: Text('Publicacion', style: CustomLabels.tableHeader)),
+                  DataColumn(label: Text('Ofertador', style: CustomLabels.tableHeader)),
                   DataColumn(label: Text('Estado', style: CustomLabels.tableHeader)),
-                  DataColumn(label: Text('Producto', style: CustomLabels.tableHeader)),
-                  DataColumn(label: Text('Dueño', style: CustomLabels.tableHeader)),
+                  DataColumn(label: Text('Producto intercambiado', style: CustomLabels.tableHeader)),
+                  DataColumn(label: Text('Valor', style: CustomLabels.tableHeader)),
                   DataColumn(label: Text('Fecha', style: CustomLabels.tableHeader)),
                 ],
-                source: OwnPublicationsDTS(publications, context),
+                source: OwnOffersDTS(user.offers, context),
                 rowsPerPage: _rowsPerPage,
                 onRowsPerPageChanged: (value) {
                   setState(() {
@@ -61,19 +56,7 @@ class _OwnPublicationsViewState extends State<OwnPublicationsView> {
                   'Esta es la lista de las publicaciones que ha hecho el usuario',
                   maxLines: 2,
                   style: CustomLabels.navbarMessage,
-                ),
-                actions: [
-                  CustomIconButton(
-                    onPressed: () {
-                      showModalBottomSheet(
-                        context: context,
-                        builder: (_) => CreatePublicationModal(products: productProvider.products),
-                      );
-                    },
-                    text: 'Crear',
-                    icon: Icons.add_outlined,
-                  ),
-                ],
+                )
               ),
             ),
           ),

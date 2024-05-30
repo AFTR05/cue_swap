@@ -16,6 +16,7 @@ class Flurorouter {
   static String myProductsRoute = '/dashboard/my_products';
   static String myPublicationsRoute = '/dashboard/my_publications';
   static String myTransfersRoute = '/dashboard/my_transfers';
+  static String myOffersRoute = '/dashboard/my_offers';
   static String myRewardsRoute = '/dashboard/my_rewards';
   static String complaintsRoute = '/dashboard/complaints';
   static String institutionalBlogRoute = '/dashboard/institutional_blog';
@@ -33,6 +34,7 @@ class Flurorouter {
     router.define(myPublicationsRoute, handler: DashboardHandlers.ownPublications, transitionType: TransitionType.none);
     router.define(myTransfersRoute, handler: DashboardHandlers.ownTransfers, transitionType: TransitionType.none);
     router.define(myRewardsRoute, handler: DashboardHandlers.ownRewards, transitionType: TransitionType.none);
+    router.define(myOffersRoute, handler: DashboardHandlers.ownOffers, transitionType: TransitionType.none);
     router.define(complaintsRoute, handler: DashboardHandlers.complaints, transitionType: TransitionType.none);
     router.define(institutionalBlogRoute, handler: DashboardHandlers.institutionalBlog, transitionType: TransitionType.none);
     router.define(profileRoute, handler: DashboardHandlers.profile, transitionType: TransitionType.none);

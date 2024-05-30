@@ -42,6 +42,7 @@ public class PublicationServiceImpl implements PublicationService {
         return publicationRepository.findAll()
                 .stream()
                 .filter(Publication::getDataState)
+                .filter(publication -> publication.getState() == State.DISPONIBLE)
                 .map(mapper::mapFromEntity).toList();
     }
 

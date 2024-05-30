@@ -1,6 +1,11 @@
 import 'package:cue_swap/provider/auth_provider.dart';
+import 'package:cue_swap/provider/complaint_provider.dart';
+import 'package:cue_swap/provider/offer_provider.dart';
+import 'package:cue_swap/provider/product_provider.dart';
+import 'package:cue_swap/provider/publication_provider.dart';
 import 'package:cue_swap/provider/rewards_provider.dart';
 import 'package:cue_swap/provider/side_menu_provider.dart';
+import 'package:cue_swap/provider/user_provider.dart';
 import 'package:cue_swap/router/router.dart';
 import 'package:cue_swap/services/local_storage.dart';
 import 'package:cue_swap/services/navigation_service.dart';
@@ -27,6 +32,11 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(lazy: false, create: ( _ ) => AuthProvider()),
         ChangeNotifierProvider(lazy: false,create: ( _ ) => SideMenuProvider()),
         ChangeNotifierProvider(create: (_)=>RewardsProvider()),
+        ChangeNotifierProvider(create: (_)=>UserProvider()),
+        ChangeNotifierProvider(create: (_)=>ComplaintProvider()),
+        ChangeNotifierProvider(create: (_)=>ProductProvider()),
+        ChangeNotifierProvider(create: (_)=>PublicationProvider()),
+        ChangeNotifierProvider(create: (_)=>OfferProvider())
       ],
       child: const MyApp(),
     );

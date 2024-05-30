@@ -5,6 +5,7 @@ import co.edu.cue.cue_swap.domain.entities.User;
 import co.edu.cue.cue_swap.mapping.dtos.TransactionDTO;
 import co.edu.cue.cue_swap.mapping.dtos.UserDTO;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 
 @Mapper(componentModel = "spring")
@@ -16,6 +17,7 @@ public interface UserMapper {
      * @param source Objeto User que contiene los detalles de la transaccion
      * @return Objeto UserDTO que representa un usuario en un DTO.
      */
+    @Mapping(target = "publications", source = "source.publications")
     UserDTO mapFromEntity(User source);
 
     /**
@@ -24,5 +26,6 @@ public interface UserMapper {
      * @param source Objeto UserDTO que contiene los detalles de la transaccion DTO
      * @return Objeto User que representa un usuario en entidad.
      */
+    @Mapping(target = "publications", source = "source.publications")
     User mapFromDTO(UserDTO source);
 }

@@ -38,10 +38,10 @@ public class LeaderServiceImpl implements LeaderService {
      */
     @Override
     public List<LeaderDTO> getAllLeaders() {
-        return leaderRepository.findAll()
-                .stream()
-                .filter(User::getData_state)
-                .map(mapper::mapFromEntity).toList();
+            return leaderRepository.findAll()
+                    .stream()
+                    .filter(User::getData_state)
+                    .map(mapper::mapFromEntity).toList();
     }
 
     /**

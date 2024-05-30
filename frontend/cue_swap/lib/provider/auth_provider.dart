@@ -20,7 +20,7 @@ class AuthProvider extends ChangeNotifier {
   AuthStatus authStatus = AuthStatus.checking;
 
   AuthProvider() {
-    isAuthenticated();
+    isAuthenticated(Flurorouter.dashboardRoute);
   }
 
   login(String username, String password){
@@ -100,7 +100,7 @@ class AuthProvider extends ChangeNotifier {
     });
   }
 
-  Future<bool> isAuthenticated() async {
+  Future<bool> isAuthenticated(String route) async {
     final token = LocalStorage.prefs.getString('token');
 
     if( token == null ) {
@@ -114,7 +114,7 @@ class AuthProvider extends ChangeNotifier {
             user = authResponse.usuario;
             authStatus = AuthStatus.authenticated;
             LocalStorage.prefs.setString('token', authResponse.token ); 
-            NavigationService.replaceTo(Flurorouter.dashboardRoute);
+            NavigationService.replaceTo(route);
             notifyListeners();
             return true;
         }

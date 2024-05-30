@@ -22,6 +22,7 @@ public record LeaderDTO (
         @JsonProperty("role") Role role,
         @JsonProperty("dependence") String dependence,
         @JsonProperty("user_reports") List<Complaint> user_reports,
+        @JsonProperty("offers") List<Offer> offers,
         @JsonProperty("made_reports") List<Complaint> made_reports,
         @JsonProperty("rewards") List<Reward> rewards,
         Boolean data_state){

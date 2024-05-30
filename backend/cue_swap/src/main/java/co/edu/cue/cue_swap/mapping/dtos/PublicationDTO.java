@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 
 public record PublicationDTO (
+        @JsonProperty("id") Long id,
         @JsonProperty("product") Product product,
         @JsonProperty("owner") User owner,
         @JsonProperty("title") String title,

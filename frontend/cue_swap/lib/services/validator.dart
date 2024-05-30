@@ -41,7 +41,9 @@ class Validator {
     
   }
 
-  
+  static bool isDoubleGreaterThanZero(double? value) {
+    return value! > 0;
+  }
 
   static bool numberValidator(String? value) {
     if (value == null || value.isEmpty) {

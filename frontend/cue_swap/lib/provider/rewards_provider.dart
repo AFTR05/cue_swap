@@ -27,13 +27,12 @@ class RewardsProvider extends ChangeNotifier {
       SwapCUEApi.post('api/reward/redeem-reward', data).then(
           (json) {
             final redeemResponse = RedeemResponse.fromMap(json['redeem']);
-            authProvider.isAuthenticated();
-            NavigationService.replaceTo(Flurorouter.rewardsRoute);
+            authProvider.isAuthenticated(Flurorouter.myRewardsRoute);
             NotificationsService.showSnackbar("Se hace canjeado exitosamente la recompensa ${redeemResponse.reward.title}");
             notifyListeners();
           }
         ).catchError((e){
-          NavigationService.replaceTo(Flurorouter.rewardsRoute);
+          NavigationService.refresh();
           NotificationsService.showSnackbarError('Ups ocurrido un error');
         });
   }

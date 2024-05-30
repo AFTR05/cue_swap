@@ -33,7 +33,7 @@ class RewardDisplayed extends StatelessWidget {
               borderRadius: BorderRadius.circular(2),
               child: Image.network(
                 imageUrl,
-                height: height * 0.6,
+                width: width * 0.4,
                 fit: BoxFit.cover,
               ),
             ),

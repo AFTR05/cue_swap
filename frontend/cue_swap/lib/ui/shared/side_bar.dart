@@ -60,6 +60,12 @@ class SideBar extends StatelessWidget {
             isActive: sideMenuProvider.currentPage == Flurorouter.myPublicationsRoute,
           ),
           MenuItem(
+            text:'Mis ofertas',
+            icon: Icons.shopping_basket_outlined,
+            onPressed: ()=>navigateTo(Flurorouter.myOffersRoute),
+            isActive: sideMenuProvider.currentPage == Flurorouter.myOffersRoute,
+          ),
+          MenuItem(
             isActive: sideMenuProvider.currentPage == Flurorouter.myTransfersRoute,
             text:'Mis trasferencias',
             icon: Icons.attach_money_outlined,
