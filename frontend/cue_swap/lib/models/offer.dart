@@ -5,6 +5,7 @@ import 'package:cue_swap/models/publication.dart';
 import 'package:cue_swap/models/user.dart';
 
 class Offer {
+    int id;
     Publication publication;
     Product? exchangedProduct;
     User bidder;
@@ -13,6 +14,8 @@ class Offer {
     String offerState;
 
     Offer({
+        
+        required this.id,
         required this.publication,
         required this.exchangedProduct,
         required this.bidder,
@@ -27,6 +30,7 @@ class Offer {
 
     factory Offer.fromMap(Map<String, dynamic> json) {
       return Offer(
+        id: json["id"],
         publication: Publication.fromMap(json["publication"]),
         exchangedProduct: json["exchanged_product"] != null ? Product.fromMap(json["exchanged_product"]) : null,
         bidder: User.fromMap(json["bidder"]),
@@ -39,6 +43,7 @@ class Offer {
 
     Map<String, dynamic> toMap() => {
         "offerState": offerState,
+        "id": id,
         "publication": publication.toMap(),
         "exchanged_product": exchangedProduct,
         "bidder": bidder.toMap(),

@@ -16,6 +16,10 @@ class Validator {
     return nameRegex.hasMatch(value);
   }
 
+  static bool isValidRating(int rating) {
+    return rating >= 1 && rating <= 5;
+  }
+
 
   static final RegExp passwordRegexp = RegExp(
     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[!@#\$&*~]).{8,}$',

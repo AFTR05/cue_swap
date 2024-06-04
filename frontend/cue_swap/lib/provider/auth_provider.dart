@@ -32,10 +32,16 @@ class AuthProvider extends ChangeNotifier {
           (json) {
             final authResponse = AuthResponse.fromMap(json['user_data']);
             user = authResponse.usuario;
-            authStatus = AuthStatus.authenticated;
-            LocalStorage.prefs.setString('token', authResponse.token ); 
-            NavigationService.replaceTo(Flurorouter.dashboardRoute);
-            notifyListeners();
+            if (user!.dataState==false){
+              NavigationService.replaceTo(Flurorouter.loginRoute);
+              NotificationsService.showSnackbarError('Has sido bloqueado por mala conducta');
+            } else{
+              authStatus = AuthStatus.authenticated;
+              LocalStorage.prefs.setString('token', authResponse.token ); 
+              NavigationService.replaceTo(Flurorouter.dashboardRoute);
+              notifyListeners();
+            }
+            
           }
         ).catchError((e){
           NavigationService.replaceTo(Flurorouter.loginRoute);

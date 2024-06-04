@@ -20,6 +20,7 @@ public record UserDTO(
         @JsonProperty("offers") List<Offer> offers,
         @JsonProperty("made_reports") List<Complaint> made_reports,
         @JsonProperty("rewards") List<Reward> rewards,
-        @JsonProperty("role") Role role
+        @JsonProperty("role") Role role,
+        @JsonProperty("data_state") Boolean data_state
 ) {
 }

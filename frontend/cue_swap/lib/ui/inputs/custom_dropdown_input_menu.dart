@@ -1,6 +1,5 @@
 import 'package:cue_swap/ui/labels/custom_labels.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 // ignore: must_be_immutable
 class CustomDropdownInputMenu extends StatefulWidget {
@@ -32,7 +31,7 @@ class _CustomDropdownInputMenuState extends State<CustomDropdownInputMenu> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.transparent,
         border: Border.all(color: Colors.black),
         borderRadius: BorderRadius.circular(4),
       ),
@@ -43,10 +42,10 @@ class _CustomDropdownInputMenuState extends State<CustomDropdownInputMenu> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                margin: const EdgeInsets.only(top: 10, left: 10),
+                margin: const EdgeInsets.only(top: 5, left: 5),
                 child: Text(
                   widget.label,
-                  style: CustomLabels.labelFormStyle,
+                  style: CustomLabels.labelFormStyle.copyWith(fontSize: 12),
                 ),
               ),
             ],
@@ -54,12 +53,8 @@ class _CustomDropdownInputMenuState extends State<CustomDropdownInputMenu> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 15),
             child: DropdownButton<String>(
-              style: GoogleFonts.ubuntu(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-              ),
-              dropdownColor: Colors.white,
+              style: CustomLabels.formStyle,
+              dropdownColor: Colors.white.withOpacity(0.8),
               alignment: Alignment.topLeft,
               icon: const Icon(Icons.keyboard_arrow_down_rounded, color: Colors.black),
               iconSize: 30,
@@ -68,7 +63,7 @@ class _CustomDropdownInputMenuState extends State<CustomDropdownInputMenu> {
               items: widget.options.map((String option) {
                 return DropdownMenuItem<String>(
                   value: option,
-                  child: Text(option),
+                  child: Text(option,style: CustomLabels.hintFormStyle.copyWith(fontSize: 12),),
                 );
               }).toList(),
               isExpanded: true,

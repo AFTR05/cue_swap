@@ -26,6 +26,7 @@ public class Offer {
     @ManyToOne
     private User bidder;
 
+    @Enumerated
     private OfferState offerState;
 
     private Double monetary_value;

@@ -14,8 +14,10 @@ class Flurorouter {
   static String dashboardRoute = '/dashboard';
   static String rewardsRoute = '/dashboard/rewards';
   static String myProductsRoute = '/dashboard/my_products';
-  static String myPublicationsRoute = '/dashboard/my_publications';
+  static String myPublicationsRoute = '/dashboard/my_publications';  
+  static String myPublicationRoute = '/dashboard/my_publication/:id';
   static String myTransfersRoute = '/dashboard/my_transfers';
+  static String myTransferRoute = '/dashboard/my_transfer/:id';
   static String myOffersRoute = '/dashboard/my_offers';
   static String myRewardsRoute = '/dashboard/my_rewards';
   static String complaintsRoute = '/dashboard/complaints';
@@ -32,7 +34,10 @@ class Flurorouter {
     router.define(rewardsRoute, handler: DashboardHandlers.rewards, transitionType: TransitionType.none);
     router.define(myProductsRoute, handler: DashboardHandlers.ownProducts, transitionType: TransitionType.none);
     router.define(myPublicationsRoute, handler: DashboardHandlers.ownPublications, transitionType: TransitionType.none);
+    router.define(myPublicationRoute, handler: DashboardHandlers.ownPublication, transitionType: TransitionType.none);
     router.define(myTransfersRoute, handler: DashboardHandlers.ownTransfers, transitionType: TransitionType.none);
+    router.define(myTransferRoute, handler: DashboardHandlers.ownTransfer, transitionType: TransitionType.none);
+    
     router.define(myRewardsRoute, handler: DashboardHandlers.ownRewards, transitionType: TransitionType.none);
     router.define(myOffersRoute, handler: DashboardHandlers.ownOffers, transitionType: TransitionType.none);
     router.define(complaintsRoute, handler: DashboardHandlers.complaints, transitionType: TransitionType.none);

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 
 public record OfferDTO(
+        @JsonProperty("id") Long id,
         @JsonProperty("publication") Publication publication,
         @JsonProperty("exchanged_product") Product exchanged_product,
         @JsonProperty("bidder") User bidder,

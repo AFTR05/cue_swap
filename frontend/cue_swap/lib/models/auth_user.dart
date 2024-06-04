@@ -5,6 +5,7 @@ import 'package:cue_swap/models/offer.dart';
 import 'package:cue_swap/models/product.dart';
 import 'package:cue_swap/models/publication.dart';
 import 'package:cue_swap/models/reward.dart';
+import 'package:cue_swap/models/transaction.dart';
 class AuthUser {
     int id;
     String nid;
@@ -19,7 +20,9 @@ class AuthUser {
     List<Product> products;
     List<Publication>? publications;
     List<Offer>? offers;
+    List<Transaction>? transactions;
     String role;
+    bool dataState;
 
     AuthUser({
         required this.id,
@@ -34,7 +37,9 @@ class AuthUser {
         required this.madeReports,
         required this.products,
         required this.publications,
+        required this.transactions,
         required this.offers,
+        required this.dataState,
         required this.role,
     });
 
@@ -43,6 +48,7 @@ class AuthUser {
     String toJson() => json.encode(toMap());
 
     factory AuthUser.fromMap(Map<String, dynamic> json) => AuthUser(
+        dataState: json['data_state'],
         id: json["id"],
         nid: json["nid"],
         name: json["name"],
@@ -56,10 +62,12 @@ class AuthUser {
         madeReports: json["made_reports"] != null ? List<Complaint>.from(json["made_reports"].map((x) => Complaint.fromMap(x))):<Complaint>[],
         products: List<Product>.from(json["products"].map((x)=> Product.fromMap(x))),
         offers: json["offers"] != null ? List<Offer>.from(json["offers"].map((x)=> Offer.fromMap(x))):[],
+        transactions: json["transactions"] != null ? List<Transaction>.from(json["transactions"].map((x)=> Transaction.fromMap(x))):<Transaction>[],
         publications: json["publications"] != null ? List<Publication>.from(json["publications"].map((x)=> Publication.fromMap(x))):<Publication>[]
     );
 
     Map<String, dynamic> toMap() => {
+        "data_state" : dataState,
         "id": id,
         "nid": nid,
         "name": name,
@@ -72,6 +80,7 @@ class AuthUser {
         "made_reports": madeReports,
         "products": List<Product>.from(products.map((x)=> x.toMap())),
         "publications": publications,
+        "transactions": transactions,
         "offers": offers,
         "role": role,
     };

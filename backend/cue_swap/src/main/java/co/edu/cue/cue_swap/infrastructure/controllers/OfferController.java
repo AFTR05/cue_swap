@@ -7,10 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -21,6 +18,15 @@ import java.util.Map;
 public class OfferController {
     private final OfferService service;
 
+    @Operation(summary = "Mostrar las oferta con estado verdadero"
+            , description = "Este método se utilizará para traer todas las oferta con estado verdadero")
+    @GetMapping("/get-all")
+    public ResponseEntity<Map<String, List<OfferDTO>>> getAllProducts(){
+        List<OfferDTO> products = service.getAllOffers();
+        Map<String, List<OfferDTO>> response = ResponseMessageUtil.responseMessage("offers", products);
+        return ResponseEntity.ok(response);
+    }
+
     @Operation(summary = "Crear una oferta"
             , description = "Este método se utilizará para crear una oferta")
     @PostMapping("/create")
@@ -28,6 +34,17 @@ public class OfferController {
                                                                      @Valid
                                                                      OfferRequestDTO offer){
         OfferDTO offerDTO = service.createOffer(offer);
+        Map<String, OfferDTO> response = ResponseMessageUtil.responseMessage("offer", offerDTO);
+        return ResponseEntity.ok(response);
+    }
+
+    @Operation(summary = "Cancelar una oferta"
+            , description = "Este método se utilizará para Cancelar una oferta")
+    @PostMapping("/cancel-offer")
+    public ResponseEntity<Map<String, OfferDTO>> cancelOffer(@RequestBody
+                                                             @Valid
+                                                             CancelOfferDTO offer){
+        OfferDTO offerDTO = service.cancelOffer(offer);
         Map<String, OfferDTO> response = ResponseMessageUtil.responseMessage("offer", offerDTO);
         return ResponseEntity.ok(response);
     }

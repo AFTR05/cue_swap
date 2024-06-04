@@ -6,6 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public record RatingDTO(
         @JsonProperty("comment") String comment,
         @JsonProperty("qualification") Integer qualification,
-        @JsonProperty("transaction_id") Transaction transaction
+        @JsonProperty("transaction") Transaction transaction
 ){
 }

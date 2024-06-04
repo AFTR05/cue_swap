@@ -18,6 +18,7 @@ public interface UserMapper {
      * @return Objeto UserDTO que representa un usuario en un DTO.
      */
     @Mapping(target = "publications", source = "source.publications")
+    @Mapping(target = "data_state", source = "source.data_state")
     UserDTO mapFromEntity(User source);
 
     /**
@@ -27,5 +28,6 @@ public interface UserMapper {
      * @return Objeto User que representa un usuario en entidad.
      */
     @Mapping(target = "publications", source = "source.publications")
+    @Mapping(target = "data_state", source = "source.data_state")
     User mapFromDTO(UserDTO source);
 }

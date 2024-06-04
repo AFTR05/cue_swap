@@ -36,7 +36,7 @@ public class TransactionController {
     public ResponseEntity<Map<String, List<TransactionDTO>>> getLeaderById(@PathVariable
                                                                 Long bidder_id) {
         List<TransactionDTO> transactionDTO = service.filterByOfferBidder(bidder_id);
-        Map<String, List<TransactionDTO>> response = ResponseMessageUtil.responseMessage("transaction", transactionDTO);
+        Map<String, List<TransactionDTO>> response = ResponseMessageUtil.responseMessage("transactions", transactionDTO);
         return ResponseEntity.ok(response);
     }
 }

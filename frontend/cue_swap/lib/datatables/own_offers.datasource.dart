@@ -7,8 +7,10 @@ class OwnOffersDTS extends DataTableSource {
   final List<Offer> offers;
   final BuildContext context;
 
-  OwnOffersDTS(this.offers, this.context);
-  
+  OwnOffersDTS(List<Offer> offers, this.context) 
+      : offers = offers..sort((a, b) => b.offerDate.compareTo(a.offerDate));
+
+  @override
   DataRow? getRow(int index) {
     final offer = offers[index];
     return DataRow.byIndex(
@@ -54,7 +56,6 @@ class OwnOffersDTS extends DataTableSource {
     );
   }
 
-  
   @override
   bool get isRowCountApproximate => false;
 
@@ -63,5 +64,4 @@ class OwnOffersDTS extends DataTableSource {
 
   @override
   int get selectedRowCount => 0;
-  
 }

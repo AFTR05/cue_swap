@@ -8,9 +8,11 @@ import 'package:cue_swap/ui/views/dashboard_view.dart';
 import 'package:cue_swap/ui/views/institutional_blog_view.dart';
 import 'package:cue_swap/ui/views/own_offers_view.dart';
 import 'package:cue_swap/ui/views/own_products_view.dart';
+import 'package:cue_swap/ui/views/own_publication_view.dart';
 import 'package:cue_swap/ui/views/own_publications_view.dart';
 import 'package:cue_swap/ui/views/own_rewards_view.dart';
-import 'package:cue_swap/ui/views/own_transfers_view.dart';
+import 'package:cue_swap/ui/views/own_transaction_view.dart';
+import 'package:cue_swap/ui/views/own_transactions_view.dart';
 import 'package:cue_swap/ui/views/rewards_view.dart';
 import 'package:cue_swap/ui/views/user_view.dart';
 import 'package:fluro/fluro.dart';
@@ -83,16 +85,50 @@ class DashboardHandlers {
     }
   );
 
+  static Handler ownPublication = Handler(
+    handlerFunc: ( context, params ) {
+      final authProvider = Provider.of<AuthProvider>(context!);
+      Provider.of<SideMenuProvider>(context,listen: false)
+        .setCurrentPage(Flurorouter.myPublicationRoute);
+      if ( authProvider.authStatus == AuthStatus.authenticated ){
+        if(params['id']?.first != null){
+          return LayoutSwitcher().usePrincipalLayout(OwnPublicationView(id: params['id']!.first));
+        } else{
+          return LayoutSwitcher().usePrincipalLayout(const OwnPublicationsView());
+        }
+      } else {
+        return const AuthLayout();
+      }   
+    }
+  );
+
   static Handler ownTransfers = Handler(
     handlerFunc: ( context, params ) {
       final authProvider = Provider.of<AuthProvider>(context!);
       Provider.of<SideMenuProvider>(context,listen: false)
         .setCurrentPage(Flurorouter.myTransfersRoute);
       if ( authProvider.authStatus == AuthStatus.authenticated ) {
-        return LayoutSwitcher().usePrincipalLayout(const OwnTransfersView());
+        return LayoutSwitcher().usePrincipalLayout(const OwnTransactionsView());
       } else {
         return const AuthLayout();
       }
+    }
+  );
+
+  static Handler ownTransfer = Handler(
+    handlerFunc: ( context, params ) {
+      final authProvider = Provider.of<AuthProvider>(context!);
+      Provider.of<SideMenuProvider>(context,listen: false)
+        .setCurrentPage(Flurorouter.myTransferRoute);
+      if ( authProvider.authStatus == AuthStatus.authenticated ){
+        if(params['id']?.first != null){
+          return LayoutSwitcher().usePrincipalLayout(OwnTransactionView(id: params['id']!.first));
+        } else{
+          return LayoutSwitcher().usePrincipalLayout(const OwnTransactionsView());
+        }
+      } else {
+        return const AuthLayout();
+      }   
     }
   );
 

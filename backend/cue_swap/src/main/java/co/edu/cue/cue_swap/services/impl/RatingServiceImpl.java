@@ -1,6 +1,7 @@
 package co.edu.cue.cue_swap.services.impl;
 
 import co.edu.cue.cue_swap.domain.entities.Rating;
+import co.edu.cue.cue_swap.domain.enums.TransactionState;
 import co.edu.cue.cue_swap.infrastructure.exception.RatingException;
 import co.edu.cue.cue_swap.infrastructure.exception.TransactionException;
 import co.edu.cue.cue_swap.infrastructure.repository.RatingRepository;
@@ -41,6 +42,8 @@ public class RatingServiceImpl implements RatingService {
                     Rating dataModification = mapper.mapFromRequestDTO(ratingRequestDTO);
                     dataModification.setTransaction(transaction);
                     try {
+                        changeProductOwner(dataModification);
+                        changeTransactionState(dataModification);
                         Rating savedRating = ratingRepository.save(dataModification);
                         return mapper.mapFromEntity(savedRating);
                     } catch (Exception e) {
@@ -49,5 +52,20 @@ public class RatingServiceImpl implements RatingService {
                     }
                 })
                 .orElseThrow(() -> new TransactionException("Transferencia no encontrada"));
+    }
+
+
+    private void changeProductOwner(Rating rating){
+        rating.getTransaction().getOffer().getPublication().getProduct().setUser(
+                rating.getTransaction().getOffer().getBidder()
+        );
+
+    }
+
+    private void changeTransactionState(Rating rating){
+        rating.getTransaction().setTransaction_state(
+                TransactionState.COMPLETA
+        );
+
     }
 }

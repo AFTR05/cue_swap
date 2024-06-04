@@ -34,8 +34,9 @@ public class ComplaintServiceImpl implements ComplaintService {
         dataModification.setDenounced(denounced);
         try {
             Complaint savedComplaint = complaintRepository.save(dataModification);
-            if (dataModification.getDenounced().getUser_reports().size()==6){
-                userRepository.delete(dataModification.getDenounced());
+            if (dataModification.getDenounced().getUser_reports().size()>=6){
+                dataModification.getDenounced().setData_state(false);
+                userRepository.save(dataModification.getDenounced());
             }
             return mapper.mapFromEntity(savedComplaint);
         } catch (Exception e) {

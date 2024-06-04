@@ -6,6 +6,7 @@ import co.edu.cue.cue_swap.domain.entities.Rating;
 import co.edu.cue.cue_swap.domain.entities.Transaction;
 import co.edu.cue.cue_swap.domain.enums.OfferState;
 import co.edu.cue.cue_swap.domain.enums.State;
+import co.edu.cue.cue_swap.domain.enums.TransactionState;
 import co.edu.cue.cue_swap.infrastructure.exception.OfferException;
 import co.edu.cue.cue_swap.infrastructure.exception.RatingException;
 import co.edu.cue.cue_swap.infrastructure.exception.TransactionException;
@@ -37,6 +38,8 @@ public class TransactionServiceImpl implements TransactionService {
                 .map(offer -> {
                     Transaction dataModification = mapper.mapFromRequestDTO(transactionRequestDTO);
                     dataModification.setOffer(offer);
+                    dataModification.setTransaction_state(TransactionState.INCOMPLETA);
+                    dataModification.getOffer().getBidder();
 
                     dataModification.setTransaction_date(LocalDate.now());
                     try {

@@ -1,5 +1,6 @@
 package co.edu.cue.cue_swap.domain.entities;
 
+import co.edu.cue.cue_swap.domain.enums.TransactionState;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,5 +16,7 @@ public class Transaction {
     @OneToOne
     private Offer offer;
     private LocalDate transaction_date;
+    @Enumerated
+    private TransactionState transaction_state;
 
 }

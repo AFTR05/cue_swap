@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:cue_swap/models/offer.dart';
 import 'package:cue_swap/models/product.dart';
 import 'package:cue_swap/models/user.dart';
 
@@ -10,6 +11,7 @@ class Publication {
     User owner;
     String title;
     String description;
+    List<Offer>? offers;
     DateTime date;
     String state;
 
@@ -17,6 +19,7 @@ class Publication {
         required this.id,
         required this.product,
         required this.owner,
+        required this.offers,
         required this.title,
         required this.description,
         required this.date,
@@ -33,6 +36,7 @@ class Publication {
         owner: User.fromMap(json["owner"]),
         title: json["title"],
         description: json["description"],
+        offers: json["offers"] != null ? List<Offer>.from(json["offers"].map((x)=> Offer.fromMap(x))):[],
         date: DateTime.parse(json["date"]),
         state: json["state"],
     );
@@ -42,7 +46,8 @@ class Publication {
         "product": product.toMap(),
         "owner": owner.toMap(),
         "title": title,
-        "description": description,
+        "description": description,        
+        "offers": offers,
         "date": "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
         "state": state,
     };
