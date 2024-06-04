@@ -15,9 +15,9 @@ class Logo extends StatelessWidget {
             'SWAP',
             style: CustomLabels.dashboardTitle
           ),
-          const Icon(
+          Icon(
             Icons.sync_rounded,
-            color: Colors.black,
+            color: Colors.black.withOpacity(0.6),
             size: 45,
           ),
           const SizedBox(width: 10),

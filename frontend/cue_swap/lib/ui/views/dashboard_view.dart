@@ -1,3 +1,6 @@
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:cue_swap/models/publication.dart';
 import 'package:cue_swap/provider/auth_provider.dart';
 import 'package:cue_swap/provider/product_provider.dart';
@@ -10,9 +13,6 @@ import 'package:cue_swap/ui/inputs/custom_input.dart';
 import 'package:cue_swap/ui/labels/custom_labels.dart';
 import 'package:cue_swap/ui/modal/create_offer_modal.dart';
 import 'package:cue_swap/ui/widgets/publication_displayed.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class DashboardView extends StatefulWidget {
   const DashboardView({Key? key});
@@ -54,9 +54,8 @@ class _DashboardViewState extends State<DashboardView> {
         children: [
           Row(
             children: [
-              Text('Publicaciones', style: CustomLabels.h1),
               Padding(
-                padding: const EdgeInsets.only(left: 40),
+                padding: const EdgeInsets.only(left: 5),
                 child: AdCard(
                   width: 550,
                   child: Row(
@@ -81,7 +80,7 @@ class _DashboardViewState extends State<DashboardView> {
                           ],
                         ),
                       ),
-                      SizedBox(width: 20),
+                      SizedBox(width: 10),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(2),
                         child: Icon(
@@ -94,9 +93,10 @@ class _DashboardViewState extends State<DashboardView> {
                   ),
                 ),
               ),
+              const SizedBox(width: 5), // Agregar espacio entre los widgets
+              Expanded(child: _buildFilters()), // Usar Expanded para que el filtro ocupe el espacio disponible
             ],
           ),
-          _buildFilters(),
           Expanded(
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -132,67 +132,62 @@ class _DashboardViewState extends State<DashboardView> {
   }
 
   Widget _buildFilters() {
-  return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 200),
-    child: WhiteCard(
-      title: 'Filtros de Publicaciones',
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  decoration: CustomInput.loginInputDecoration(
-                    hint: 'Ingresa el título de la publicación',
-                    label: 'Título de la publicación',
-                    icon: Icons.info_outline,
-                  ),
-                  onChanged: (value) {
-                    setState(() {
-                      _filterTitle = value;
-                    });
-                  },
+  return WhiteCard(
+    title: 'Filtros de Publicaciones',
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Flexible(
+              child: TextField(
+                decoration: CustomInput.filterInputDecoration(
+                  hint: 'Título',
+                  label: 'Título',
+                  icon: Icons.info_outline,
                 ),
+                onChanged: (value) {
+                  setState(() {
+                    _filterTitle = value;
+                  });
+                },
               ),
-              SizedBox(width: 10),
-              Expanded(
-                child: TextField(
-                  decoration: CustomInput.loginInputDecoration(
-                    hint: 'Ingresa la descripción de la publicación',
-                    label: 'Descripción de la publicación',
-                    icon: Icons.info_outline,
-                  ),
-                  onChanged: (value) {
-                    setState(() {
-                      _filterDescription = value;
-                    });
-                  },
+            ),
+            SizedBox(width: 10),
+            Flexible(
+              child: TextField(
+                decoration: CustomInput.filterInputDecoration(
+                  hint: 'Descripción',
+                  label: 'Descripción',
+                  icon: Icons.info_outline,
                 ),
+                onChanged: (value) {
+                  setState(() {
+                    _filterDescription = value;
+                  });
+                },
               ),
-            ],
-          ),
-          SizedBox(height: 10),
-          CustomDropdownInputMenu(
-            options: const [
-              "TODAS LAS CATEGORIAS",
-              "PRODUCTOS_USADOS",
-              "UNIFORMES",
-              "LIBROS",
-            ],
-            label: 'Categoría de la publicación',
-            onSelectedOptionChanged: (selectedOption) {
-              setState(() {
-                _filterCategory = selectedOption;
-              });
-            },
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+        SizedBox(height: 10), // Reduce el espacio vertical entre los elementos
+        CustomDropdownInputMenu(
+          options: const [
+            "TODAS LAS CATEGORIAS",
+            "PRODUCTOS_USADOS",
+            "UNIFORMES",
+            "LIBROS",
+          ],
+          label: 'Categoría',
+          onSelectedOptionChanged: (selectedOption) {
+            setState(() {
+              _filterCategory = selectedOption;
+            });
+          },
+        ),
+      ],
     ),
   );
 }
-
-
 
 }

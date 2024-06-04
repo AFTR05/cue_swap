@@ -18,7 +18,19 @@ class OwnPublicationsDTS extends DataTableSource {
       cells: [
           DataCell(Text(publication.title , style: CustomLabels.tableData.copyWith(fontSize: 10),)),
           DataCell(Text(publication.description , style: CustomLabels.tableData.copyWith(fontSize: 8),)),
-          DataCell(Text(publication.state , style: CustomLabels.tableData.copyWith(fontSize: 10),)),
+          DataCell(
+            Text(
+              publication.state , 
+              style: CustomLabels.tableData.copyWith(
+                fontSize: 10,
+                color: publication.state=="VENDIDO" || publication.state=='INTERCAMBIADO'
+                      ? Colors.green
+                      : publication.state=="DISPONIBLE"
+                        ? Colors.amber
+                        : Colors.red
+              ),
+            )
+          ),
           DataCell(Text(publication.product.name , style: CustomLabels.tableData.copyWith(fontSize: 10),)),
           DataCell(Text(publication.owner.name , style: CustomLabels.tableData.copyWith(fontSize: 10),)),
           DataCell(Text(DateFormat('yyyy-MM-dd').format(publication.date) , style: CustomLabels.tableData.copyWith(fontSize: 12),)),

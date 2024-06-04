@@ -58,7 +58,7 @@ class ProductDataDisplayed extends StatelessWidget {
             child: Text(
               description,
               textAlign: TextAlign.center,
-              style: CustomLabels.imageDisplayedDescription,
+              style: CustomLabels.imageDisplayedDescription.copyWith(fontSize: 10),
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),

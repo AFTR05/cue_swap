@@ -24,6 +24,27 @@ class CustomInput {
     );
   }
 
+  static InputDecoration filterInputDecoration({
+    required String hint,
+    required String label,
+    required IconData icon,
+  }){
+    return InputDecoration(
+      border: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.black)
+      ),
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Color.fromRGBO(76, 76, 82, 1))
+      ),
+      hintText: hint,
+      labelText: label,
+      prefixIcon: Icon( icon, color: Colors.black ),
+      labelStyle: CustomLabels.labelFormStyle,
+      hintStyle: CustomLabels.hintFormStyle
+
+    );
+  }
+
   static InputDecoration profileInputDecoration({
     required String hint,
     required String label,
@@ -78,6 +99,7 @@ class CustomInput {
         enabledBorder: InputBorder.none,
         hintText: hint,
         prefixIcon: Icon(icon,color: Colors.grey),
+        
         labelStyle: const TextStyle(color: Colors.grey),
         hintStyle: const TextStyle(color: Colors.grey)
     );

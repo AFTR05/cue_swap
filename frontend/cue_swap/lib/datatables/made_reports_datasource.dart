@@ -15,8 +15,8 @@ class MadeReportsDTS extends DataTableSource {
     return DataRow.byIndex(
       index: index,
       cells: [
-          DataCell(Text(report.complainant.name , style: CustomLabels.tableData,)),
-          DataCell(Text(report.denounced.name , style: CustomLabels.tableData,)),
+          DataCell(Text(report.complainant.name , style: CustomLabels.tableData.copyWith(color: Colors.green),)),
+          DataCell(Text(report.denounced.name , style: CustomLabels.tableData.copyWith(color: Colors.red),)),
           DataCell(Text(report.description , style: CustomLabels.tableData,)),
       ]
     );

@@ -31,7 +31,16 @@ class OwnOffersDTS extends DataTableSource {
         DataCell(
           Text(
             offer.offerState,
-            style: CustomLabels.tableData.copyWith(fontSize: 12),
+            style: CustomLabels.tableData
+            .copyWith(
+              fontSize: 12,
+              color: offer.offerState == "ACEPTADO"
+                      ? Colors.green
+                      : offer.offerState == "EN_ESPERA" 
+                        ? Colors.amber
+                        : Colors.red
+            
+            ),
           ),
         ),
         DataCell(

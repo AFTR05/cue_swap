@@ -11,13 +11,13 @@ class CustomLabels{
 
   static TextStyle dashboardTitle= GoogleFonts.juliusSansOne(
                 fontSize: 50,
-                color: Colors.black,
+                color: Colors.black.withOpacity(0.6),
                 fontWeight: FontWeight.bold
               );
 
   static TextStyle menuItem=GoogleFonts.poppins(
                       fontSize: 16,
-                      color: Colors.white.withOpacity(0.9)
+                      color: Colors.white.withOpacity(0.8)
                     );
   
   static TextStyle tableHeader=GoogleFonts.poppins(

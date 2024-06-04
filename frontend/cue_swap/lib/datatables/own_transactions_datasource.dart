@@ -29,7 +29,14 @@ class OwnTransactionsDTS extends DataTableSource {
           )),
           DataCell(Text(transaction.offer.publication.product.name , style: CustomLabels.tableData.copyWith(fontSize: 12),)),
           DataCell(Text(DateFormat('yyyy-MM-dd').format(transaction.transactionDate) , style: CustomLabels.tableData.copyWith(fontSize: 12),)),
-          DataCell(Text(transaction.transactionState , style: CustomLabels.tableData.copyWith(fontSize: 12),)),
+          DataCell(
+            Text(transaction.transactionState , 
+            style: CustomLabels.tableData.copyWith(
+              fontSize: 12,
+              color: transaction.transactionState == "COMPLETA"
+              ? Colors.green
+              : Colors.red
+            ),)),
           DataCell(
             transaction.transactionState=="COMPLETA"
               ? IconButton(
