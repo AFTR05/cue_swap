@@ -1,5 +1,4 @@
 package co.edu.cue.cue_swap.services.impl;
-
 import co.edu.cue.cue_swap.domain.entities.Token;
 import co.edu.cue.cue_swap.domain.entities.User;
 import co.edu.cue.cue_swap.domain.enums.CodeMessage;
@@ -10,12 +9,12 @@ import co.edu.cue.cue_swap.infrastructure.utils.Validation;
 import co.edu.cue.cue_swap.mapping.dtos.*;
 import co.edu.cue.cue_swap.mapping.mappers.UserMapper;
 import co.edu.cue.cue_swap.security.JwtService;
+import co.edu.cue.cue_swap.services.AuthService;
 import co.edu.cue.cue_swap.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -23,7 +22,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService{
     private final UserMapper mapper;
     private final UserRepository userRepository;
     private final TokenRepository tokenRepository;

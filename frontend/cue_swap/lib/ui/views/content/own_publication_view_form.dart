@@ -2,19 +2,22 @@
 import 'package:cue_swap/datatables/own_publication_offers_datasource.dart';
 import 'package:cue_swap/models/offer.dart';
 import 'package:cue_swap/models/publication.dart';
+import 'package:cue_swap/models/rating.dart';
 import 'package:cue_swap/provider/offer_provider.dart';
 import 'package:cue_swap/ui/cards/white_card.dart';
 import 'package:cue_swap/ui/inputs/simulated_input.dart';
 import 'package:cue_swap/ui/labels/custom_labels.dart';
+import 'package:cue_swap/ui/views/content/feedback_information.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class OwnPublicationViewForm extends StatefulWidget {
   final Publication publication;
+  final List<Rating> ratings;
 
   const OwnPublicationViewForm({super.key, 
-    required this.publication,
+    required this.publication, required this.ratings,
   });
 
   @override
@@ -66,6 +69,9 @@ class _OwnPublicationViewFormState extends State<OwnPublicationViewForm> {
             )
           ),
         ),
+        widget.ratings.isEmpty 
+              ? Container()
+              : FeedbackInformation(rating: widget.ratings[0])
       ],
     );
   }

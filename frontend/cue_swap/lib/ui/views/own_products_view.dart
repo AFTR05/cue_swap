@@ -100,7 +100,7 @@ class OwnProductsView extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: MediaQuery.of(context).size.width ~/
-                          340, // Ajusta 400 al tamaño deseado
+                          385, // Ajusta 400 al tamaño deseado
                       crossAxisSpacing: 8,
                       mainAxisSpacing: 8,
                     ),

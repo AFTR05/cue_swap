@@ -1,5 +1,7 @@
 import 'package:cue_swap/models/publication.dart';
+import 'package:cue_swap/models/rating.dart';
 import 'package:cue_swap/provider/auth_provider.dart';
+import 'package:cue_swap/provider/rating_provider.dart';
 import 'package:cue_swap/ui/cards/white_card.dart';
 import 'package:cue_swap/ui/labels/custom_labels.dart';
 import 'package:cue_swap/ui/views/content/own_publication_view_form.dart';
@@ -15,6 +17,8 @@ class OwnPublicationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<AuthProvider>(context).user!;
+    final ratingProvider = Provider.of<RatingProvider>(context);
+    final rating= filterRatingsByPublicationId(ratingProvider.allRatings, int.parse(id));
     final publications = user.publications;
     final publication = publications!.where((publication) => publication.id == int.parse(id)).toList();
     return Container(
@@ -25,7 +29,7 @@ class OwnPublicationView extends StatelessWidget {
           Text('Publication', style: CustomLabels.h1 ),
 
           const SizedBox( height: 10 ),
-          _OwnPublicationViewBody(publication: publication[0])
+          _OwnPublicationViewBody(rating: rating, publication: publication[0])
 
         ],
       ),
@@ -35,8 +39,9 @@ class OwnPublicationView extends StatelessWidget {
 
 class _OwnPublicationViewBody extends StatelessWidget {
   final Publication publication;
+  final List<Rating> rating;
 
-  const _OwnPublicationViewBody({required this.publication});
+  const _OwnPublicationViewBody({required this.publication, required this.rating});
 
 
   @override
@@ -50,14 +55,19 @@ class _OwnPublicationViewBody extends StatelessWidget {
         TableRow(
           children: [
             _AvatarContainer(publication: publication,),
-            OwnPublicationViewForm(publication: publication),
+            OwnPublicationViewForm(publication: publication, ratings: rating),
           ]
         )
       ],
     );
   }
+
+  
 }
 
+List<Rating> filterRatingsByPublicationId(List<Rating> ratings, int publicationId) {
+      return ratings.where((rating) => rating.transaction.offer.publication.id==publicationId).toList();
+    }
 
 
 

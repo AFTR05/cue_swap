@@ -6,10 +6,8 @@ import co.edu.cue.cue_swap.mapping.dtos.UserAuthDTO;
 
 import java.util.List;
 
-public interface UserService {
-    UserAuthDTO authenticate(UserModelDTO userModelDTO);
+public interface UserService extends AuthService {
 
-    UserAuthDTO authByHeader(String token);
 
     List<UserDTO> getAllUsers();
 

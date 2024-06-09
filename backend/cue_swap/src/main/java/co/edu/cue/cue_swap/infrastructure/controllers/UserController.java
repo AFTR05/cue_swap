@@ -4,6 +4,7 @@ import co.edu.cue.cue_swap.infrastructure.exception.UserException;
 import co.edu.cue.cue_swap.infrastructure.utils.Constants;
 import co.edu.cue.cue_swap.infrastructure.utils.ResponseMessageUtil;
 import co.edu.cue.cue_swap.mapping.dtos.*;
+import co.edu.cue.cue_swap.services.AuthService;
 import co.edu.cue.cue_swap.services.StudentService;
 import co.edu.cue.cue_swap.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;

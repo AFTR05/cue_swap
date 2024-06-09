@@ -1,9 +1,8 @@
-import 'package:cue_swap/models/rating.dart';
 import 'package:cue_swap/models/transaction.dart';
 import 'package:cue_swap/provider/rating_provider.dart';
 import 'package:cue_swap/ui/cards/white_card.dart';
-import 'package:cue_swap/ui/inputs/disable_star_rating_widget.dart';
 import 'package:cue_swap/ui/inputs/simulated_input.dart';
+import 'package:cue_swap/ui/views/content/feedback_information.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -46,7 +45,7 @@ class _OwnTransactionViewFormState extends State<OwnTransactionViewForm> {
         TransactionInformation(transaction: widget.transaction),
         const SizedBox(height: 20),
         // Si rating es null, puede manejarlo de acuerdo a tus necesidades
-        rating != null ? FeedbackInformation(transaction: widget.transaction, rating: rating,) : Container(),
+        rating != null ? FeedbackInformation(rating: rating,) : Container(),
         const SizedBox(height: 10),
       ],
     );
@@ -97,39 +96,6 @@ class TransactionInformation extends StatelessWidget {
             label: 'Producto', 
             icon: Icons.info_outline_rounded
           ),
-        ],
-      )
-    );
-  }
-}
-
-class FeedbackInformation extends StatelessWidget {
-  const FeedbackInformation({
-    super.key,
-    required this.rating, required this.transaction,
-  });
-
-  final Rating rating;
-  final Transaction transaction;
-
-  @override
-  Widget build(BuildContext context) {
-    return WhiteCard(
-      title: 'Información de retroalimentación',
-      child: Column(
-        children: [
-          
-          const SizedBox(height: 20,),
-          SimulatedInput(
-            value: rating.comment,
-            label: 'Comentario', 
-            icon: Icons.info_outline_rounded
-          ),
-          const SizedBox(height: 20,),
-          DisableStarRatingWidget(
-            initialRating: rating.qualification.toDouble(),
-          )
-          
         ],
       )
     );

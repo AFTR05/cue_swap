@@ -1,5 +1,6 @@
 import 'package:cue_swap/datatables/own_publications_datasource.dart';
 import 'package:cue_swap/provider/product_provider.dart';
+import 'package:cue_swap/provider/rating_provider.dart';
 import 'package:cue_swap/router/router.dart';
 import 'package:cue_swap/ui/cards/ad_card.dart';
 import 'package:cue_swap/ui/labels/custom_labels.dart';
@@ -24,6 +25,7 @@ class _OwnPublicationsViewState extends State<OwnPublicationsView> {
   void initState() {
     super.initState();
     Provider.of<ProductProvider>(context, listen: false).getProducts();
+    Provider.of<RatingProvider>(context, listen: false).getRatings();
   }
   
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
